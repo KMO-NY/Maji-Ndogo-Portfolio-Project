@@ -1,0 +1,11 @@
+#Ignore all slicer versions of .pbix files
+*slicers.pbix
+
+# Ignore Python Folder for now - wait to build regression model!
+*"C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\3 - Maji Ndogo -- Python"
+
+#Ignore the .sql version of the Maji Ndogo SQL script
+*"C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\1 - Maji-Ndogo -- SQL\MAJI_NDOGO-SQL_SCRIPT-2.sql"
+
+#Ignore Jupyter Notebook Checkpoints
+*"C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\1 - Maji-Ndogo -- SQL\.ipynb_checkpoints"
