@@ -3,22 +3,29 @@
 ## Table of Contents
 ---
 [Project Overview](#project-overview)
+
 [Data Sources](#data-sources)
+
 [Tools](#tools)
+
 [Data Cleaning/Preparations](#data-cleaningpreparations)
+
 [EDA (Exploratory Data Analysis)](#eda-exploritory-data-analysis)
+
 [Data Analysis](#data-analysis)
+
 [Results/Findings](#resultsfindings)
+
 [Recommendations](#recommendations)
-[Limitations](#limitations)
-[References](#references)
+
 
 ### Project Overview
-<!-- /Write a 5-6 sentence paragraph describing your project; include who might be interested to learn about your findings. Who might be your audience?/ -->
 
-Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. The first area that is addressed is the state of the water sources in the country. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources 1 - 5. Secondly, the Agricultural sector will be analysed. 
-<!-- -!-!-!  Review! -->
-This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well persons and organisations that wish for the SDG goals to be reached. 
+Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictionala issues will be addressed throughout the course of this project. The first area that is addressed is the state of the water sources in the country. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources 1 - 5. Secondly, the Agricultural sector will be analysed. Here, I will create .py files to do the cleaning of data. 
+
+This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached. 
+
+*Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
 ### Data Sources
 
@@ -27,19 +34,21 @@ This project will appeal to persons and organisations that are interested in fin
 3. Md_summary.csv - A summary informed by the ```project_progress``` table. Contains data of water sources that need to be fixed.
 4. Md_water_services_data.xlsx - comes in variations Md_water_services_data, 2-Md_water_services_data, 3-Md_water_services_data, 4-Md_water_services_data. Updates ```project_progress``` and related tables up to 2027 (time period: 2022 - 2027). 
 5. Md_queue_related_crime.csv - Records crimes that can be tied to water sources. Accompanies Md_summary.
-<!-- 6. Maji_Ndogo_farm_survey_small.db - explanation - accompanied by a data dictionary titled "-" -->
+6. Maji_Ndogo_farm_survey_small.db - explanation - accompanied by a data dictionary titled "-" 
 
 
 ### Tools
 
-- MySQL - explaination
+- MySQL - version
     - [Download here](link)
-- Jupyter Notebooks - explaination
+- Jupyter Notebooks - version
     - [Download here](link)
-- PowerBI - explaination
+- PowerBI - version
     - [Download here](link)
-- Google Colab - explaination
+- Google Colab - version
     - [Go to site](link)
+- VSCode - version
+    - [Download here](link)
 
 ### Data Cleaning/Preparations
 
@@ -83,7 +92,6 @@ This project will appeal to persons and organisations that are interested in fin
 
 For Water Related Data: 
 
-|---|---------|--------------|--------|
 |No.| Features| Relationships| Metrics|
 |---|---------|--------------|--------|
 |1| subjective_quality_score, results, type_of_water_source| water_quality, water_source, well_pollution | unsafe_well_percent|  
@@ -92,8 +100,6 @@ For Water Related Data:
 |4| location_id, location_type| Features are in one table| rural_sources_percent|
 |5| Crime_id, victim_gender, time_of_day| Features are in one table| Maji Ndogo Crime-related Data Report: Number of Crimes by hour of day|
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
-|---|---------|--------------|--------|
-
 
 ### EDA (Exploritory Data Analysis)
 <!-- /Describe the steps you took to import and clean the data -->
