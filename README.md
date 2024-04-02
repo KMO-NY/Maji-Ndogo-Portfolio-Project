@@ -46,8 +46,6 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 - field_data_processor.py
 - weather_data_processor.py 
 
-*Key Findings: _* 
-
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
@@ -89,15 +87,6 @@ For Water Related Data:
 5. Are the citizens able to safely collect water from public water sources?
 6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
 
-For Farming Data:
-
-1. Understand what of the variables, or **feature** variables in our dataset means.
-2. What the distributions of those feature variables are through univariate analysis.
-3. What the are relationship between the feature variables. What are the relationships between the feature variables and our target variable `Standard_yield`. We do this by doing a multivariate analysis.
-
-**What affects the `Standard_yield`**? Do all crops do better in high rainfall places? Do all crops grow better on flat terrain where the slope is low?
-
-
 #### Hypothesis
 
 For Water Related Data:  
@@ -109,7 +98,6 @@ For Water Related Data:
 5. No, the citizens aren't able to safely collect water from public water sources.
 6. Women have the hardest time collecting water.
 
-For Farming Data:
 
 #### Approach
 
@@ -124,7 +112,6 @@ For Water Related Data:
 |5| Crime_id, victim_gender, time_of_day| Features are in one table| Maji Ndogo Crime-related Data Report: Number of Crimes by hour of day|
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
 
-For Farming Data:
 
 ### EDA (Exploritory Data Analysis)
 
@@ -184,8 +171,6 @@ Md_summary and Md_queue_related_crime were uploaded to Power BI Desktop. I famil
 
 Uploaded "Md_water_services_data" on to Power BI Desktop. Cleaned it by making sure features had their correct data types, and that the relationships were correct. Uploaded the variations and checked that the data was ready to be analysed.
 
-```DAX
-```
 
 #### Python Packages:
 
@@ -428,18 +413,11 @@ plt.show()
 ![Rainfall_distribution_by_soil_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/43e77320-ed4e-42e8-acfa-f356958cc229)
 
 
-- The distribution of the Slope variable is skewed a bit to the left, which means the mean value may not be the best measure of central tendency. Most values are below the mean, but because there are some extreme values influencing the mean calculation. We should be careful when we use this column in statistical calculations.
-
-- The KDE of Rainfall appears normal, but seems to have multiple peaks. This may indicate underlying patterns that are overlapping. We should take a closer look.
-
 Created a KDE plot of the Rainfall column using hue.
 ```python
 sns.kdeplot(data = MD_agric_df, x = 'Rainfall', hue= 'Crop_type')
 ```
 ![Rainfall_distribution_by-crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/5e4a47a8-edfa-438d-a471-97d6d7b52c39)
-
-
-Akatsi, on average has a higher rainfall number than Kilimani, and Amanzi's average rainfall is quite similar to Kilimani, so there is no difference really. We can confirm this by grouping our data by `Location`, and calculating the means of the `Rainfall` column.
 
 Calculate the mean rainfall in each province.
 ```python
@@ -447,9 +425,7 @@ MD_agric_df.groupby('Location').mean(numeric_only = True)['Rainfall']
 ```
 ![rainfall_mean_by_location-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/e2dbcf1f-337c-47fb-a2f7-e3ef919f4ed7)
 
-- Amanzi is the province with the lowest average rainfall. Potatoes and maize seem to grow in lower rainfall regions. Is there a connection?
 
- - Sokoto has ... which means that...
 Created a Violin plot of `Rainfall` distributions for various crop types
 
 ```python
@@ -465,11 +441,9 @@ plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
 plt.show()
 ```
 
-A Violin plot that is particularly useful for comparing the distribution of a continuous variable across different levels of a categorical variable. It is similar to the KDE plot, but the distributions are split apart a bit so it is simpler to understand.
+
 ![Violin-Rainfall_distribution_by_crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/71ab7311-915d-46de-836f-687343e2f1e0)
 
-- Rice seems to grow mostly where there is about 1600 mm of annual rainfall, while Coffee can grow across a wide range of rainfall conditions. Does that mean Coffee is a more resilient crop than rice?
- - Bananas seem to prefer... so...
 
 Used a Pandas tool called crosstab() to check the number of times categorical features co-existed.
 
@@ -477,8 +451,6 @@ Used a Pandas tool called crosstab() to check the number of times categorical fe
 pd.crosstab(MD_agric_df['Location'],MD_agric_df['Crop_type'])
 ```
 ![count_crop_by_location_and_crop_type-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/a64c9059-fdf0-4268-84c5-3e7574097c31)
-
-- For Amanzi, potatoes, wheat and maize occur a lot more frequently than the other crops, and as we saw earlier, this is because Amanzi has less rainfall, making these crops more viable.
 
 Checked if variables are linearly correlated using the df.corr() method.
 
@@ -491,11 +463,6 @@ print(std_correlation_coeffs)
 ```
 ![standard_yield_correlation-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/055b9259-86f0-4570-b717-1b1570447cf4)
 
-- `Pollution_level` is inversely correlated (weak) with `Standard_yield`, so when places are polluted, crops produce less.
-
-- `Min_temperature_C` is weakly correlated with `Standard_yield`. So when the minimum temperature is higher, crops produce more. So when it doesn't get too cold, crops grow better.
-
-- No single feature can explain why a crop does well. There are many weak correlations and correlations only look at linear relationships, so features like `Rainfall` that have a low correlation, may just not be linearly correlated.
 
 Created a DataFrame for only coffee crops, and then looked at the pairplot of this DataFrame to understand what affects the coffee crop. By doing this we can remove some of the complexity brought by the different crop types.
 
@@ -508,11 +475,6 @@ sns.pairplot(coffee_df)
 ```
 ![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
 
-- Coffee crop yield has a positive correlation with rainfall, crop yields are best when there is a lot of rain.
-
-- Coffee crop yield is higher when the soil is more fertile, so it seems coffee benefits a lot from rich soil.
-
-- Highly polluted areas lower the crop output of coffee. Pollution has a significant effect on the crop yield.
 
 ### Results/Findings
 
