@@ -1,4 +1,4 @@
- # Maji Ndogo Project Proposal   
+[queue_time_exceeds_500_min.csv](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/files/14830348/queue_time_exceeds_500_min.csv)[types_of_water_sources_in_Maji.csv](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/files/14830346/types_of_water_sources_in_Maji.csv) # Maji Ndogo Project Proposal   
 
 ## Table of Contents
 ---
@@ -106,7 +106,8 @@ For Water Related Data:
 
 The md_water_services.sql file was uploaded to MySQL as a database. It was cleaned and analysed. The Auditor_report.csv was added as a table to the database. This data was used to better understand the water-related problems faced as well as identify the water sources that weren't functioning, polluted or that just made it harder for citizens to collect water (by ways of crimes and exccessive queues). 
 
-[First Look at the Dataset]("C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\1 - Maji-Ndogo -- SQL\EER_Diagram-md_water_services-first_look.png")
+![EER_Diagram-md_water_services-first_look](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/f9056ffb-a4df-40dd-b1c2-3fed2f4ff144)
+
 
 Finding out the  water source types:
 
@@ -116,7 +117,9 @@ SELECT DISTINCT
 FROM
     water_source;
 ```
-[Result]("C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\1 - Maji-Ndogo -- SQL\types_of_water_sources_in_Maji.csv")
+
+![types_of_water_sources_in_Maji-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/6d116f60-721b-45a6-9d3d-baa941f1a39b)
+
 
 Looking for persons who have to queued for abnormal times (more than 500 minutes):
 
@@ -128,7 +131,8 @@ FROM
 WHERE
     time_in_queue > 500;
 ```
-[Result]("C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\1 - Maji-Ndogo -- SQL\queue_time_exceeds_500_min.csv")
+![queue_time_exceeds_500_min-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/f1139744-6669-4496-bfd5-6d9e894307e6)
+
 
 105 Records were returned! This means that 105 water sources had queue times of over 500 minutes.
 
@@ -143,7 +147,8 @@ WHERE
         'HaZa21742224',
         'AmDa12214224');
 ```
-[Result]("C:\Users\shiir\Documents\Comp_local Data Science Projects and Practice Scripts\Maji Ndogo Portfolio Project\1 - Maji-Ndogo -- SQL\0vs500_queues.csv")
+![0vs500_queues-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/cc11c2c1-df27-4cba-8ad6-adb842c0d9f5)
+
 
 The 500 minute queue times were from "shared tap" water sources, whereas the 0 minute queue times were from "well" and "tap_in_home" water sources. 
 
