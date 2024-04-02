@@ -222,12 +222,13 @@ Used df.info() or df.describe() to understand the data we have access to
 ```python
 MD_agric_df.info()
 ```
-**ADD df.info().png**
+![df info()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/039f8d61-bce7-4f1e-a83e-fbbfebc0a331)
+
 
 ```python
 MD_agric_df.describe()
 ```
-**ADD df.describe().png**
+![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
 
 
 ### Data Analysis
@@ -414,8 +415,6 @@ Created data reports on Crime-related data, User reports for national and provin
 
 #### Python Packages:
 
-
-
 Created a KDE plot of rainfall distribution split by soil types
 
 ```python
@@ -426,7 +425,8 @@ plt.xlabel('Rainfall')
 plt.ylabel('Density')
 plt.show()
 ```
-**ADD Rainfall_distribution_by_soil_type.png**
+![Rainfall_distribution_by_soil_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/43e77320-ed4e-42e8-acfa-f356958cc229)
+
 
 - The distribution of the Slope variable is skewed a bit to the left, which means the mean value may not be the best measure of central tendency. Most values are below the mean, but because there are some extreme values influencing the mean calculation. We should be careful when we use this column in statistical calculations.
 
@@ -436,7 +436,8 @@ Created a KDE plot of the Rainfall column using hue.
 ```python
 sns.kdeplot(data = MD_agric_df, x = 'Rainfall', hue= 'Crop_type')
 ```
-**ADD Rainfall_distribution_by-crop_type.png**
+![Rainfall_distribution_by-crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/5e4a47a8-edfa-438d-a471-97d6d7b52c39)
+
 
 Akatsi, on average has a higher rainfall number than Kilimani, and Amanzi's average rainfall is quite similar to Kilimani, so there is no difference really. We can confirm this by grouping our data by `Location`, and calculating the means of the `Rainfall` column.
 
@@ -444,7 +445,7 @@ Calculate the mean rainfall in each province.
 ```python
 MD_agric_df.groupby('Location').mean(numeric_only = True)['Rainfall']
 ```
-**ADD rainfall_mean_by_location.png**
+![rainfall_mean_by_location-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/e2dbcf1f-337c-47fb-a2f7-e3ef919f4ed7)
 
 - Amanzi is the province with the lowest average rainfall. Potatoes and maize seem to grow in lower rainfall regions. Is there a connection?
 
@@ -465,7 +466,8 @@ plt.show()
 ```
 
 A Violin plot that is particularly useful for comparing the distribution of a continuous variable across different levels of a categorical variable. It is similar to the KDE plot, but the distributions are split apart a bit so it is simpler to understand.
-**ADD Violin-Rainfall_distribution_by_crop_type.png**
+![Violin-Rainfall_distribution_by_crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/71ab7311-915d-46de-836f-687343e2f1e0)
+
 - Rice seems to grow mostly where there is about 1600 mm of annual rainfall, while Coffee can grow across a wide range of rainfall conditions. Does that mean Coffee is a more resilient crop than rice?
  - Bananas seem to prefer... so...
 
@@ -474,7 +476,7 @@ Used a Pandas tool called crosstab() to check the number of times categorical fe
 ```python
 pd.crosstab(MD_agric_df['Location'],MD_agric_df['Crop_type'])
 ```
-**ADD count_crop_by_location_and_crop_type.png**
+![count_crop_by_location_and_crop_type-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/a64c9059-fdf0-4268-84c5-3e7574097c31)
 
 - For Amanzi, potatoes, wheat and maize occur a lot more frequently than the other crops, and as we saw earlier, this is because Amanzi has less rainfall, making these crops more viable.
 
@@ -487,7 +489,7 @@ std_correlation_coeffs = MD_agric_df.corr()['Standard_yield'].sort_values(ascend
 # Print sorted correlation coefficients
 print(std_correlation_coeffs)
 ```
-**ADD standard_yield_correlation.png**
+![standard_yield_correlation-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/055b9259-86f0-4570-b717-1b1570447cf4)
 
 - `Pollution_level` is inversely correlated (weak) with `Standard_yield`, so when places are polluted, crops produce less.
 
@@ -504,7 +506,7 @@ coffee_df = coffee_df.drop(columns = ['Crop_type','Field_ID','Annual_yield'])
 ```python
 sns.pairplot(coffee_df)
 ```
-**ADD coffee-pairplot.png**
+![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
 
 - Coffee crop yield has a positive correlation with rainfall, crop yields are best when there is a lot of rain.
 
