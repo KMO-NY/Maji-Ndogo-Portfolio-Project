@@ -1,4 +1,4 @@
-[queue_time_exceeds_500_min.csv](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/files/14830348/queue_time_exceeds_500_min.csv)[types_of_water_sources_in_Maji.csv](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/files/14830346/types_of_water_sources_in_Maji.csv) # Maji Ndogo Project Proposal   
+# Maji Ndogo Project Proposal   
 
 ## Table of Contents
 ---
