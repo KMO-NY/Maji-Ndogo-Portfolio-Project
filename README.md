@@ -24,17 +24,24 @@
 Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictionala issues will be addressed throughout the course of this project. This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached.
 
 #### SQL:
-The first area that is addressed is the state of the water sources in the country. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources 1 - 5. Will be referred to as "Water Related Data"
+The first area that is addressed is the state of the water sources in the country. This first part of the project is motivated by SDG Goal 6: Clean Water and Sanitation. This is the goal that aims ensure availability and sustainable management of water and sanitation for all. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources one (1) and two (2). This data will from here on be referred to as "Water Related Data"
 
-*Key Findings: _* 
+*Key Findings:  Most water sources are rural (60%); 43% of citizens are using shared taps (2000 people per tap); 31% of our population has water infrastructure in their homes, but within that group, 45% face non-functional systems due to issues with pipes, pumps, and reservoirs; 18% of our people are using wells, but within that, only 28% are clean; Citizens often face long wait times for water, averaging more than 120 minutes.* 
 
 #### Data Visualisation & Storytelliing with PowerBI:
-Will be referred to as "Water Related Data" 
+Miscrosoft PowerBI Desktop is used to visualise the data from the SQL part of the project in order to gain more insights and identify patterns that would have otherwise gone unnoticed. 
+Visualisations from approx. 25 000 records from the `project_progress` and related tables - uses data sources 3 to 5.
 
-*Key Findings: _*  
+*Key Findings: 69% of water collectors are women; 64% of crime victims in water related crimes are also women; It is almost twice as expensive to improve a source in a rural area, compared to an urban area; We are over budget in every province.*  
 
 #### Python Packages:
-Secondly, the Agricultural sector will be analysed. Here, I will create .py files to do the cleaning of data. 
+Secondly, the Agricultural sector will be analysed. This part of the project aligns with multiple goals, namely:
+- Zero Hunger (Goal 2): End hunger, achieve food security and improved nutrition, and promote sustainable agriculture.
+- Decent Work and Economic Growth (Goal 8): Promote sustained, inclusive, and sustainable economic growth, full and productive employment, and decent work for all.
+- Industry, Innovation, and Infrastructure (Goal 9): Build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation.
+- Responsible Consumption and Production (Goal 12): Ensure sustainable consumption and production patterns.
+  
+Here, I will create .py files to do the cleaning of data. The packages will ingest data (from the web, databases), process data (field data and weather data) 
 
 *Key Findings: _* 
 
