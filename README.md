@@ -21,9 +21,23 @@
 
 ### Project Overview
 
-Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictionala issues will be addressed throughout the course of this project. The first area that is addressed is the state of the water sources in the country. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources 1 - 5. Secondly, the Agricultural sector will be analysed. Here, I will create .py files to do the cleaning of data. 
+Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictionala issues will be addressed throughout the course of this project. This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached.
 
-This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached. 
+#### SQL:
+The first area that is addressed is the state of the water sources in the country. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources 1 - 5. Will be referred to as "Water Related Data"
+
+*Key Findings: _* 
+
+#### Data Visualisation & Storytelliing with PowerBI:
+Will be referred to as "Water Related Data" 
+
+*Key Findings: _*  
+
+#### Python Packages:
+Secondly, the Agricultural sector will be analysed. Here, I will create .py files to do the cleaning of data. 
+
+*Key Findings: _* 
+
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
@@ -40,25 +54,21 @@ This project will appeal to persons and organisations that are interested in fin
 ### Tools
 
 - MySQL - version
-    - [Download here](link)
+    - [Download here]([link](https://dev.mysql.com/))
 - Jupyter Notebooks - version
     - [Download here](link)
 - PowerBI - version
-    - [Download here](link)
+    - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
 - Google Colab - version
-    - [Go to site](link)
+    - [Go to site]([link](https://colab.google/))
 - VSCode - version
-    - [Download here](link)
+    - [Download here]([link](https://code.visualstudio.com/download))
 
 ### Data Cleaning/Preparations
 
 #### Questions
-<!-- /Create 2-3 questions that you want to answer with the data: -->
-<!-- T​his will be easier to answer once you've had an opportunity to look at the data and do some initial exploration. -->
-<!-- D​on't get carried away on the analysis piece at this stage as there will be more analysis later. -->
-<!-- D​o focus on key data elements that are present. For instance: What are they, when are they, who are they about? Do they connect? How do they connect? Jot down ideas as you brainstorm./ -->
 
-<!-- For Water Related Data:  -->
+For Water Related Data:
 
 1. What percentage of the water sources is safe for public use and consumption?
 2. How long are people standing in queues on average?
@@ -69,13 +79,8 @@ This project will appeal to persons and organisations that are interested in fin
 
 
 #### Hypothesis
-<!-- /W​hat are your initial hypotheses about the data? -->
-<!-- W​rite 2-3 assumptions about the data that you'll want to go back to prove or disprove. You will want to keep them in front of you as you look at the data to keep them or change them. You may see relationships that you want to explore and will develop a "belief" about the data.  -->
-<!-- Start documenting what you think you can tell from the data.  -->
-<!-- What pops up as interesting to you? Most likely it will be interesting to others as well. -->
-<!-- U​se the discussion boards to discuss with others about your client and the data to brainstorm together./ -->
 
-<!-- For Water Related Data:  -->
+For Water Related Data:  
 
 1. Less than half (50%) of the water from wells in Maji Ndogo is safe to consume.
 2. The average queue time is around 200 minutes.
@@ -85,10 +90,6 @@ This project will appeal to persons and organisations that are interested in fin
 6. Women have the hardest time collecting water.
 
 #### Approach
-<!-- /Describe in 5-6 sentences w​hat approach you are going to take in order to prove (or disprove) your hypotheses. Think about the following in your answer:  -->
-<!-- W​hat features (fields/columns) are you going to look at first? -->
-<!-- I​s there a relationship that exists that you want to explore? -->
-<!-- W​hat metric/ evaluation measure will you use?/ -->
 
 For Water Related Data: 
 
@@ -102,9 +103,6 @@ For Water Related Data:
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
 
 ### EDA (Exploritory Data Analysis)
-<!-- /Describe the steps you took to import and clean the data -->
-<!-- Perform initial exploration of data and provide some screenshots or display some stats of the data you are looking at. -->
-<!-- Create an ERD or proposed ERD to show the relationships of the data you are exploring./  -->
 
 The md_water_services.sql file was uploaded to MySQL as a database. It was cleaned and analysed. The Auditor_report.csv was added as a table to the database. This data was used to better understand the water-related problems faced as well as identify the water sources that weren't functioning, polluted or that just made it harder for citizens to collect water (by ways of crimes and exccessive queues). 
 
