@@ -4,6 +4,8 @@
 ---
 [Project Overview](#project-overview)
 
+[Maji Ndogo's Water-related Data](link)
+
 [Data Sources](#data-sources)
 
 [Tools](#tools)
@@ -17,6 +19,8 @@
 [Results/Findings](#resultsfindings)
 
 [Recommendations](#recommendations)
+
+[## Maji Ndogo's Farming Data:]()
 
 
 ## Project Overview
@@ -64,12 +68,12 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 ### Tools
 
 - MySQL - version 8.0.36
-    - [Download here]([link](https://dev.mysql.com/))
+    - [Download here](https://dev.mysql.com/)
 - Anaconda Navigator - version 2.5.2
-    - [Download here]([link](https://www.anaconda.com/download))
+    - [Download here](https://www.anaconda.com/download)
     - Packages to install in Anaconda Navigator environment (Jupyter Notebook - v7.0.6; SQL alchemy - v1.4.4; SQLite - v3.41.2; pymysql - v1.0.2; ipython - v8.15.0)
 - PowerBI - version 2.126.1261.0
-    - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
+    - [Download here](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update)
 
 ### Data Cleaning/Preparations
 
@@ -348,8 +352,8 @@ Created data reports on:
 
 #### SQL:
 
-Water Accessibility and infrastructure Summary Report:
----
+**Water Accessibility and infrastructure Summary Report:**
+
 1. Most water sources are rural (60%).
 2. 43% of our people are using shared taps. 2000 people often share one tap.
 3. 31% of our population has water infrastructure in their homes, but within that group, 45% face non-functional systems due to issues with pipes, pumps, and reservoirs. 55% have functioning in-home taps.
@@ -362,8 +366,8 @@ Water Accessibility and infrastructure Summary Report:
 7. Sokoto has the largest population of people drinking river water. 
 8. The majority of water from Amanzi comes from taps, but half of these in-home taps don't work because the infrastructure is broken. 
 
-Auditor report:
----
+**Auditor report:**
+
 An audit was conducted to assess the validity of the data - whether the current records were an accurate depiction of the country's water situation. The results were as follows:
 Employees Zuriel Matembo, Malachi Mavuso, Bello Azibo and Lalitha Kaburi made more mistakes than their peers on average. And they all have incriminating statements made against them, and only them.
 
@@ -377,6 +381,7 @@ The sources the four employees assessed could have had their issues gone unrecog
 - Sokoto has a very high average cost of improvement, both rurally and in urban areas.
 - We are over budget in every province.
 - We underestimated the cost of rural improvements in Sokoto
+- Some vendors spend more of the budget because they move around when fixing water sources instead of fixing the water sources that are next to each to other.
 
 ### Recommendations
 
@@ -394,19 +399,35 @@ can benefit from repairing one facility. For example, fixing a reservoir or pipe
 commonly affected areas though to see where the problem actually is. --fix!
 6. Investigate corruption and create policies to combat it. This can involve division of duty and randomised check-ups on work done.
 
-**Data Visualisation & Storytelling:**
+#### Data Visualisation & Storytelliing with PowerBI:
+
+Based on the provided information, here are some recommendations:
+
+1. Since a large percentage of water collectors and crime victims in water-related crimes are women, efforts should be made to ensure that water access and safety measures are gender-inclusive. This could include providing training and resources specifically tailored to women, ensuring their safety in water collection and usage.
+
+2. Given the higher cost of improving water sources in rural areas, strategies should be developed to make these improvements more cost-effective. This might involve exploring alternative technologies or construction methods that are more suitable for rural environments.
+
+3. With all provinces being over budget, a thorough review of the budget and expenses should be conducted. Identify areas where costs can be reduced or reallocated to stay within budget.
+
+4. To address the issue of vendors moving around instead of focusing on nearby water sources, consider implementing stricter guidelines or incentives to encourage vendors to prioritize efficiency and cost-effectiveness in their work.
+
+5. Since the cost of rural improvements in Sokoto was underestimated, a reassessment of the budget and project scope in Sokoto specifically is necessary. Adjustments should be made to ensure that adequate funding is allocated to complete the necessary improvements.
+
+6. Continuously monitor and analyze data related to project costs, vendor activities, and gender-specific issues to identify trends and areas for improvement. This can help in making informed decisions and improving project efficiency over time.
+
+## Maji Ndogo's Farming Data:
 
 ### Data Sources
 6. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
-7. Weather_station_data - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv") - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
-8. Weather_data_field_mapping - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv") - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
+7. Weather_station_data - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv) - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
+8. Weather_data_field_mapping - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv) - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
 
 
 ### Tools
-- Google Colab - version
-    - [Go to site]([link](https://colab.google/))
-- VSCode - version
-    - [Download here]([link](https://code.visualstudio.com/download))
+- Google Colab 
+    - [Go to site](https://colab.google/)
+- VSCode - version 1.88.0
+    - [Download here](https://code.visualstudio.com/download)
 
 ### Data Cleaning/Preparations
 
