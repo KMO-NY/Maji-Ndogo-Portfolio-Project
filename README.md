@@ -68,7 +68,7 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 - Anaconda Navigator - version 2.5.2
     - [Download here]([link](https://www.anaconda.com/download))
     - Packages to install in Anaconda Navigator environment (Jupyter Notebook - v7.0.6; SQL alchemy - v1.4.4; SQLite - v3.41.2; pymysql - v1.0.2; ipython - v8.15.0)
-- PowerBI - 2.126.1261.0
+- PowerBI - version 2.126.1261.0
     - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
 
 ### Data Cleaning/Preparations
@@ -78,7 +78,7 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 1. What percentage of the water sources is safe for public use and consumption?
 2. How long are people standing in queues on average?
 3. How many of the private taps are functioning and safe to consume?
-4. What is the ratio of rural and urban water sources? PowerBI
+4. What is the ratio of rural and urban water sources? 
 5. Are the citizens able to safely collect water from public water sources?
 6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
 
@@ -93,8 +93,6 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 
 #### Approach
 
-For Water Related Data: 
-
 |No.| Features| Relationships| Metrics|
 |---|---------|--------------|--------|
 |1| subjective_quality_score, results, type_of_water_source| water_quality, water_source, well_pollution | unsafe_well_percent|  
@@ -108,7 +106,7 @@ For Water Related Data:
 
 #### SQL:
 
-The md_water_services.sql file was uploaded to MySQL as a database. It was cleaned and analysed. The Auditor_report.csv was added as a table to the database. This data was used to better understand the water-related problems faced as well as identify the water sources that weren't functioning, polluted or that just made it harder for citizens to collect water (by ways of crimes and exccessive queues). 
+The md_water_services.sql file was uploaded to MySQL as a database. It was cleaned and analysed. The Auditor_report.csv was added as a table to the database (see script 3). This data was used to better understand the water-related problems faced as well as identify the water sources that weren't functioning, polluted or that just made it harder for citizens to collect water (by ways of crimes and exccessive queues). 
 
 ![EER_Diagram-md_water_services-first_look](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/f9056ffb-a4df-40dd-b1c2-3fed2f4ff144)
 
@@ -158,12 +156,9 @@ The 500 minute queue times were from "shared tap" water sources, whereas the 0 m
 
 #### Data Visualisation & Storytelliing with PowerBI:
 
-Md_summary and Md_queue_related_crime were uploaded to Power BI Desktop. I familiarised myself with the data by looking at the total number of people served by Location type, water source type; and how the total was spread across provinces; average queue times by days of the week, hour of day, gender and number of people; the number of crimes by crime type, victim gender and provinces. The results are in "Maji_Ndogo Familiarizing ourselves with the Data" and "Maji_Ndogo Familiarizing ourselves with the Data 2".
+Md_summary and Md_queue_related_crime were uploaded to Power BI Desktop. I familiarised myself with the data by looking at the total number of people served by Location type, water source type; and how the total was spread across provinces; average queue times by days of the week, hour of day, gender and number of people; the number of crimes by crime type, victim gender and provinces. The results are in "Maji_Ndogo Familiarizing ourselves with the Data" and "Maji_Ndogo Familiarizing ourselves with the Data 2". Alternatively, open report 1 and two for a more interactive view.
 
 Uploaded "Md_water_services_data" on to Power BI Desktop. Cleaned it by making sure features had their correct data types, and that the relationships were correct. Uploaded the variations and checked that the data was ready to be analysed.
-
-```DAX
-```
 
 ### Data Analysis
 
@@ -344,9 +339,10 @@ Comments TEXT
 ```
 #### Data Visualisation & Storytelliing with PowerBI:
 
-Created data reports on Crime-related data, User reports for national and provincial stakeholders, and a dashboard that the public could access to know about what was done in their area and just how much more was left to do, as well as the associated costs and key influencers.
-<!-- FIX -->
-
+Created data reports on:
+- Crime-related data, 
+- User reports for national and provincial stakeholders, and
+- A dashboard that the public could access to know about what was done in their area and just how much more was left to do, as well as the associated costs and key influencers
 
 ### Results/Findings
 
@@ -375,14 +371,14 @@ The sources the four employees assessed could have had their issues gone unrecog
 
 #### Data Visualisation & Storytelliing with PowerBI:
 
+- 69% of water collectors are women
+- 64% of crime victims in water related crimes are also women
 - It is almost twice as expensive to improve a source in a rural area, compared to an urban area.
 - Sokoto has a very high average cost of improvement, both rurally and in urban areas.
 - We are over budget in every province.
 - We underestimated the cost of rural improvements in Sokoto
 
 ### Recommendations
-
-<!-- For Water Related Issues (Project Water for Everyone): -->
 
 1. If communities are using rivers, we can dispatch trucks to those regions to provide water temporarily in the short term, while we send out
 crews to drill for wells, providing a more permanent solution.
@@ -396,7 +392,7 @@ installing taps in homes, is resource-intensive and better suited as a long-term
 5. Addressing broken infrastructure offers a significant impact even with just a single intervention. It is expensive to fix, but so many people
 can benefit from repairing one facility. For example, fixing a reservoir or pipe that multiple taps are connected to. We will have to find the
 commonly affected areas though to see where the problem actually is. --fix!
-6. Investigate corruption and create policies to combat it. This can involve division of duty 
+6. Investigate corruption and create policies to combat it. This can involve division of duty and randomised check-ups on work done.
 
 **Data Visualisation & Storytelling:**
 
