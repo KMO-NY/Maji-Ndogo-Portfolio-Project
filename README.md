@@ -46,6 +46,8 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 - field_data_processor.py
 - weather_data_processor.py 
 
+*Key Findings: _* 
+
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
@@ -56,10 +58,6 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 3. Md_summary.csv - A summary informed by the ```project_progress``` table. Contains data of water sources that need to be fixed.
 4. Md_water_services_data.xlsx - comes in variations Md_water_services_data, 2-Md_water_services_data, 3-Md_water_services_data, 4-Md_water_services_data. Updates ```project_progress``` and related tables up to 2027 (time period: 2022 - 2027). 
 5. Md_queue_related_crime.csv - Records of crimes that can be tied to the water sources. Accompanies Md_summary.
-6. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
-7. Weather_station_data - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv") - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
-8. Weather_data_field_mapping - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv") - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
-
 
 ### Tools
 
@@ -69,10 +67,6 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
     - [Download here](link)
 - PowerBI - version
     - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
-- Google Colab - version
-    - [Go to site]([link](https://colab.google/))
-- VSCode - version
-    - [Download here]([link](https://code.visualstudio.com/download))
 
 ### Data Cleaning/Preparations
 
@@ -98,7 +92,6 @@ For Water Related Data:
 5. No, the citizens aren't able to safely collect water from public water sources.
 6. Women have the hardest time collecting water.
 
-
 #### Approach
 
 For Water Related Data: 
@@ -111,7 +104,6 @@ For Water Related Data:
 |4| location_id, location_type| Features are in one table| rural_sources_percent|
 |5| Crime_id, victim_gender, time_of_day| Features are in one table| Maji Ndogo Crime-related Data Report: Number of Crimes by hour of day|
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
-
 
 ### EDA (Exploritory Data Analysis)
 
@@ -171,50 +163,8 @@ Md_summary and Md_queue_related_crime were uploaded to Power BI Desktop. I famil
 
 Uploaded "Md_water_services_data" on to Power BI Desktop. Cleaned it by making sure features had their correct data types, and that the relationships were correct. Uploaded the variations and checked that the data was ready to be analysed.
 
-
-#### Python Packages:
-
-The farm survey data source was read into a Data Frame and cleaned first:
-
-- Columns that were switched (`Annual_yield`, `Crop_type_Temp`), where Identified and switched back
-
-```python
-MD_agric_df.rename(columns={'Annual_yield': 'Crop_type_Temp', 'Crop_type': 'Annual_yield'}, inplace=True)
-MD_agric_df.rename(columns={'Crop_type_Temp': 'Crop_type'}, inplace=True)
-``` 
-- Certain entries of `Elevation` were negative (impossible), they were also fixed
-
-```python
-MD_agric_df['Elevation'] = MD_agric_df['Elevation'].abs()
+```DAX
 ```
-- Certain `Crop_type` entries were incorrect
-```python
-def correct_crop_type(crop):
-    crop = crop.strip()  # Remove trailing spaces
-    corrections = {
-        'cassaval': 'cassava',
-        'wheatn': 'wheat',
-        'teaa': 'tea'
-    }
-    return corrections.get(crop, crop)  # Get the corrected crop type, or return the original if not in corrections
-
-# Apply the correction function to the Crop_type column
-MD_agric_df['Crop_type'] = MD_agric_df['Crop_type'].apply(correct_crop_type)
-```
-
-Used df.info() or df.describe() to understand the data we have access to
-
-```python
-MD_agric_df.info()
-```
-![df info()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/039f8d61-bce7-4f1e-a83e-fbbfebc0a331)
-
-
-```python
-MD_agric_df.describe()
-```
-![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
-
 
 ### Data Analysis
 
@@ -398,83 +348,6 @@ Comments TEXT
 Created data reports on Crime-related data, User reports for national and provincial stakeholders, and a dashboard that the public could access to know about what was done in their area and just how much more was left to do, as well as the associated costs and key influencers.
 <!-- FIX -->
 
-#### Python Packages:
-
-Created a KDE plot of rainfall distribution split by soil types
-
-```python
-plt.figure(figsize=(10, 6))
-sns.kdeplot(data=MD_agric_df, x='Rainfall', hue='Soil_type', fill=True)
-plt.title('Rainfall Distribution by Soil Types')
-plt.xlabel('Rainfall')
-plt.ylabel('Density')
-plt.show()
-```
-![Rainfall_distribution_by_soil_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/43e77320-ed4e-42e8-acfa-f356958cc229)
-
-
-Created a KDE plot of the Rainfall column using hue.
-```python
-sns.kdeplot(data = MD_agric_df, x = 'Rainfall', hue= 'Crop_type')
-```
-![Rainfall_distribution_by-crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/5e4a47a8-edfa-438d-a471-97d6d7b52c39)
-
-Calculate the mean rainfall in each province.
-```python
-MD_agric_df.groupby('Location').mean(numeric_only = True)['Rainfall']
-```
-![rainfall_mean_by_location-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/e2dbcf1f-337c-47fb-a2f7-e3ef919f4ed7)
-
-
-Created a Violin plot of `Rainfall` distributions for various crop types
-
-```python
-# Changing dimensions
-plt.figure( figsize =(5 ,10))
-
-sns.violinplot(x='Crop_type', y='Rainfall', data=MD_agric_df)
-plt.title("Rainfall Distribution for Various Crop Types")
-plt.xlabel("Crop Type")
-plt.ylabel("Rainfall")
-plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
-
-plt.show()
-```
-
-
-![Violin-Rainfall_distribution_by_crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/71ab7311-915d-46de-836f-687343e2f1e0)
-
-
-Used a Pandas tool called crosstab() to check the number of times categorical features co-existed.
-
-```python
-pd.crosstab(MD_agric_df['Location'],MD_agric_df['Crop_type'])
-```
-![count_crop_by_location_and_crop_type-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/a64c9059-fdf0-4268-84c5-3e7574097c31)
-
-Checked if variables are linearly correlated using the df.corr() method.
-
-```python
-# Calculate correlation coefficients
-std_correlation_coeffs = MD_agric_df.corr()['Standard_yield'].sort_values(ascending= True)
-
-# Print sorted correlation coefficients
-print(std_correlation_coeffs)
-```
-![standard_yield_correlation-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/055b9259-86f0-4570-b717-1b1570447cf4)
-
-
-Created a DataFrame for only coffee crops, and then looked at the pairplot of this DataFrame to understand what affects the coffee crop. By doing this we can remove some of the complexity brought by the different crop types.
-
-```python
-coffee_df = MD_agric_df.query("Crop_type == 'coffee'")
-coffee_df = coffee_df.drop(columns = ['Crop_type','Field_ID','Annual_yield'])
-```
-```python
-sns.pairplot(coffee_df)
-```
-![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
-
 
 ### Results/Findings
 
@@ -508,12 +381,6 @@ The sources the four employees assessed could have had their issues gone unrecog
 - We are over budget in every province.
 - We underestimated the cost of rural improvements in Sokoto
 
-#### Python Packages:
-
-- Location and Rainfall are connected, and that Rainfall and Crop_type are connected
-- one of the big takeaways from this analysis is that crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
-- Answer questions like, what makes tea grow well?
-
 ### Recommendations
 
 <!-- For Water Related Issues (Project Water for Everyone): -->
@@ -534,3 +401,211 @@ commonly affected areas though to see where the problem actually is. --fix!
 
 **Data Visualisation & Storytelling:**
 
+### Data Sources
+6. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
+7. Weather_station_data - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv") - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
+8. Weather_data_field_mapping - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv") - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
+
+
+### Tools
+- Google Colab - version
+    - [Go to site]([link](https://colab.google/))
+- VSCode - version
+    - [Download here]([link](https://code.visualstudio.com/download))
+
+### Data Cleaning/Preparations
+
+#### Questions
+<!-- /Create 2-3 questions that you want to answer with the data: -->
+<!-- T​his will be easier to answer once you've had an opportunity to look at the data and do some initial exploration. -->
+<!-- D​on't get carried away on the analysis piece at this stage as there will be more analysis later. -->
+<!-- D​o focus on key data elements that are present. For instance: What are they, when are they, who are they about? Do they connect? How do they connect? Jot down ideas as you brainstorm./ -->
+For Farming Data:
+
+1. Understand what of the variables, or **feature** variables in our dataset means.
+2. What the distributions of those feature variables are through univariate analysis.
+3. What the are relationship between the feature variables. What are the relationships between the feature variables and our target variable `Standard_yield`. We do this by doing a multivariate analysis.
+
+**What affects the `Standard_yield`**? Do all crops do better in high rainfall places? Do all crops grow better on flat terrain where the slope is low?
+
+
+#### Hypothesis
+<!-- /W​hat are your initial hypotheses about the data? -->
+<!-- W​rite 2-3 assumptions about the data that you'll want to go back to prove or disprove. You will want to keep them in front of you as you look at the data to keep them or change them. You may see relationships that you want to explore and will develop a "belief" about the data.  -->
+<!-- Start documenting what you think you can tell from the data.  -->
+<!-- What pops up as interesting to you? Most likely it will be interesting to others as well. -->
+<!-- U​se the discussion boards to discuss with others about your client and the data to brainstorm together./ -->
+
+
+#### Approach
+<!-- /Describe in 5-6 sentences w​hat approach you are going to take in order to prove (or disprove) your hypotheses. Think about the following in your answer:  -->
+<!-- W​hat features (fields/columns) are you going to look at first? -->
+<!-- I​s there a relationship that exists that you want to explore? -->
+<!-- W​hat metric/ evaluation measure will you use?/ -->
+
+
+### EDA (Exploritory Data Analysis)
+<!-- /Describe the steps you took to import and clean the data -->
+<!-- Perform initial exploration of data and provide some screenshots or display some stats of the data you are looking at. -->
+<!-- Create an ERD or proposed ERD to show the relationships of the data you are exploring./  -->
+#### Python Packages:
+
+The farm survey data source was read into a Data Frame and cleaned first:
+
+- Columns that were switched (`Annual_yield`, `Crop_type_Temp`), where Identified and switched back
+
+```python
+MD_agric_df.rename(columns={'Annual_yield': 'Crop_type_Temp', 'Crop_type': 'Annual_yield'}, inplace=True)
+MD_agric_df.rename(columns={'Crop_type_Temp': 'Crop_type'}, inplace=True)
+``` 
+- Certain entries of `Elevation` were negative (impossible), they were also fixed
+
+```python
+MD_agric_df['Elevation'] = MD_agric_df['Elevation'].abs()
+```
+- Certain `Crop_type` entries were incorrect
+```python
+def correct_crop_type(crop):
+    crop = crop.strip()  # Remove trailing spaces
+    corrections = {
+        'cassaval': 'cassava',
+        'wheatn': 'wheat',
+        'teaa': 'tea'
+    }
+    return corrections.get(crop, crop)  # Get the corrected crop type, or return the original if not in corrections
+
+# Apply the correction function to the Crop_type column
+MD_agric_df['Crop_type'] = MD_agric_df['Crop_type'].apply(correct_crop_type)
+```
+
+Used df.info() or df.describe() to understand the data we have access to
+
+```python
+MD_agric_df.info()
+```
+![df info()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/039f8d61-bce7-4f1e-a83e-fbbfebc0a331)
+
+
+```python
+MD_agric_df.describe()
+```
+![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
+
+
+
+### Data Analysis
+#### Python Packages:
+
+Created a KDE plot of rainfall distribution split by soil types
+
+```python
+plt.figure(figsize=(10, 6))
+sns.kdeplot(data=MD_agric_df, x='Rainfall', hue='Soil_type', fill=True)
+plt.title('Rainfall Distribution by Soil Types')
+plt.xlabel('Rainfall')
+plt.ylabel('Density')
+plt.show()
+```
+![Rainfall_distribution_by_soil_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/43e77320-ed4e-42e8-acfa-f356958cc229)
+
+
+- The distribution of the Slope variable is skewed a bit to the left, which means the mean value may not be the best measure of central tendency. Most values are below the mean, but because there are some extreme values influencing the mean calculation. We should be careful when we use this column in statistical calculations.
+
+- The KDE of Rainfall appears normal, but seems to have multiple peaks. This may indicate underlying patterns that are overlapping. We should take a closer look.
+
+Created a KDE plot of the Rainfall column using hue.
+```python
+sns.kdeplot(data = MD_agric_df, x = 'Rainfall', hue= 'Crop_type')
+```
+![Rainfall_distribution_by-crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/5e4a47a8-edfa-438d-a471-97d6d7b52c39)
+
+
+Akatsi, on average has a higher rainfall number than Kilimani, and Amanzi's average rainfall is quite similar to Kilimani, so there is no difference really. We can confirm this by grouping our data by `Location`, and calculating the means of the `Rainfall` column.
+
+Calculate the mean rainfall in each province.
+```python
+MD_agric_df.groupby('Location').mean(numeric_only = True)['Rainfall']
+```
+![rainfall_mean_by_location-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/e2dbcf1f-337c-47fb-a2f7-e3ef919f4ed7)
+
+- Amanzi is the province with the lowest average rainfall. Potatoes and maize seem to grow in lower rainfall regions. Is there a connection?
+
+ - Sokoto has ... which means that...
+Created a Violin plot of `Rainfall` distributions for various crop types
+
+```python
+# Changing dimensions
+plt.figure( figsize =(5 ,10))
+
+sns.violinplot(x='Crop_type', y='Rainfall', data=MD_agric_df)
+plt.title("Rainfall Distribution for Various Crop Types")
+plt.xlabel("Crop Type")
+plt.ylabel("Rainfall")
+plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
+
+plt.show()
+```
+
+A Violin plot that is particularly useful for comparing the distribution of a continuous variable across different levels of a categorical variable. It is similar to the KDE plot, but the distributions are split apart a bit so it is simpler to understand.
+![Violin-Rainfall_distribution_by_crop_type](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/71ab7311-915d-46de-836f-687343e2f1e0)
+
+- Rice seems to grow mostly where there is about 1600 mm of annual rainfall, while Coffee can grow across a wide range of rainfall conditions. Does that mean Coffee is a more resilient crop than rice?
+ - Bananas seem to prefer... so...
+
+Used a Pandas tool called crosstab() to check the number of times categorical features co-existed.
+
+```python
+pd.crosstab(MD_agric_df['Location'],MD_agric_df['Crop_type'])
+```
+![count_crop_by_location_and_crop_type-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/a64c9059-fdf0-4268-84c5-3e7574097c31)
+
+- For Amanzi, potatoes, wheat and maize occur a lot more frequently than the other crops, and as we saw earlier, this is because Amanzi has less rainfall, making these crops more viable.
+
+Checked if variables are linearly correlated using the df.corr() method.
+
+```python
+# Calculate correlation coefficients
+std_correlation_coeffs = MD_agric_df.corr()['Standard_yield'].sort_values(ascending= True)
+
+# Print sorted correlation coefficients
+print(std_correlation_coeffs)
+```
+![standard_yield_correlation-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/055b9259-86f0-4570-b717-1b1570447cf4)
+
+- `Pollution_level` is inversely correlated (weak) with `Standard_yield`, so when places are polluted, crops produce less.
+
+- `Min_temperature_C` is weakly correlated with `Standard_yield`. So when the minimum temperature is higher, crops produce more. So when it doesn't get too cold, crops grow better.
+
+- No single feature can explain why a crop does well. There are many weak correlations and correlations only look at linear relationships, so features like `Rainfall` that have a low correlation, may just not be linearly correlated.
+
+Created a DataFrame for only coffee crops, and then looked at the pairplot of this DataFrame to understand what affects the coffee crop. By doing this we can remove some of the complexity brought by the different crop types.
+
+```python
+coffee_df = MD_agric_df.query("Crop_type == 'coffee'")
+coffee_df = coffee_df.drop(columns = ['Crop_type','Field_ID','Annual_yield'])
+```
+```python
+sns.pairplot(coffee_df)
+```
+![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
+
+- Coffee crop yield has a positive correlation with rainfall, crop yields are best when there is a lot of rain.
+
+- Coffee crop yield is higher when the soil is more fertile, so it seems coffee benefits a lot from rich soil.
+
+- Highly polluted areas lower the crop output of coffee. Pollution has a significant effect on the crop yield.
+
+### Results/Findings
+#### Python Packages:
+
+- Location and Rainfall are connected, and that Rainfall and Crop_type are connected
+- one of the big takeaways from this analysis is that crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
+- Answer questions like, what makes tea grow well?
+
+### Recommendations
+
+
+### Limitations
+
+
+### References
