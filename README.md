@@ -19,22 +19,22 @@
 [Recommendations](#recommendations)
 
 
-### Project Overview
+## Project Overview
 
-Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictionala issues will be addressed throughout the course of this project. This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached.
+Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictional issues will be addressed throughout the course of this project. Each of the different parts of this project will use a different skill to showcase my knowledge and practical application of each necessary skill for a Data Scientist. This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached. It will also appeal to persons who wish to say what I can do - as part of my job application for a Data Analyst/ Data Scientist posts.
 
-#### SQL:
+### SQL:
 The first area that is addressed is the state of the water sources in the country. This first part of the project is motivated by SDG Goal 6: Clean Water and Sanitation. This is the goal that aims ensure availability and sustainable management of water and sanitation for all. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources one (1) and two (2). This data will from here on be referred to as "Water Related Data"
 
 *Key Findings:  Most water sources are rural (60%); 43% of citizens are using shared taps (2000 people per tap); 31% of our population has water infrastructure in their homes, but within that group, 45% face non-functional systems due to issues with pipes, pumps, and reservoirs; 18% of our people are using wells, but within that, only 28% are clean; Citizens often face long wait times for water, averaging more than 120 minutes.* 
 
-#### Data Visualisation & Storytelliing with PowerBI:
+### Data Visualisation & Storytelliing with PowerBI:
 Miscrosoft PowerBI Desktop is used to visualise the data from the SQL part of the project in order to gain more insights and identify patterns that would have otherwise gone unnoticed. 
 Visualisations from approx. 25 000 records from the `project_progress` and related tables - uses data sources 3 to 5.
 
 *Key Findings: 69% of water collectors are women; 64% of crime victims in water related crimes are also women; It is almost twice as expensive to improve a source in a rural area, compared to an urban area; We are over budget in every province.*  
 
-#### Python Packages:
+### Python Packages:
 Secondly, the Agricultural sector will be analysed. This will be done with the goal of automating farming in Maji Ndogo, a place with diverse and challenging agricultural landscapes. The long-term goal is to have fully autonomous farming equipment that can intelligently manage and optimise agricultural processes. This part of the project aligns with multiple SDG goals, namely:
 - Zero Hunger (Goal 2): End hunger, achieve food security and improved nutrition, and promote sustainable agriculture.
 - Decent Work and Economic Growth (Goal 8): Promote sustained, inclusive, and sustainable economic growth, full and productive employment, and decent work for all.
@@ -51,6 +51,8 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
+## Maji Ndogo's Water-related Data:
+
 ### Data Sources
 
 1. md_water_services.sql - A database containing the records captured from a water survey conducted in Maji Ndogo - accompanied by a data dictionary titled "Data_dictionary"
@@ -61,9 +63,9 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 
 ### Tools
 
-- MySQL - version
+- MySQL - version 8.0.36
     - [Download here]([link](https://dev.mysql.com/))
-- Jupyter Notebooks - version
+- Jupyter Notebooks - version 3.11.5 
     - [Download here](link)
 - PowerBI - version
     - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
