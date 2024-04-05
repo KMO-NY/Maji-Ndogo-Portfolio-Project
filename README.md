@@ -65,16 +65,15 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 
 - MySQL - version 8.0.36
     - [Download here]([link](https://dev.mysql.com/))
-- Jupyter Notebooks - version 3.11.5 
-    - [Download here](link)
-- PowerBI - version
+- Anaconda Navigator - version 2.5.2
+    - [Download here]([link](https://www.anaconda.com/download))
+    - Packages to install in Anaconda Navigator environment (Jupyter Notebook - v7.0.6; SQL alchemy - v1.4.4; SQLite - v3.41.2; pymysql - v1.0.2; ipython - v8.15.0)
+- PowerBI - 2.126.1261.0
     - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
 
 ### Data Cleaning/Preparations
 
 #### Questions
-
-For Water Related Data:
 
 1. What percentage of the water sources is safe for public use and consumption?
 2. How long are people standing in queues on average?
@@ -84,8 +83,6 @@ For Water Related Data:
 6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
 
 #### Hypothesis
-
-For Water Related Data:  
 
 1. Less than half (50%) of the water from wells in Maji Ndogo is safe to consume.
 2. The average queue time is around 200 minutes.
