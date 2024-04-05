@@ -58,10 +58,6 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 3. Md_summary.csv - A summary informed by the ```project_progress``` table. Contains data of water sources that need to be fixed.
 4. Md_water_services_data.xlsx - comes in variations Md_water_services_data, 2-Md_water_services_data, 3-Md_water_services_data, 4-Md_water_services_data. Updates ```project_progress``` and related tables up to 2027 (time period: 2022 - 2027). 
 5. Md_queue_related_crime.csv - Records of crimes that can be tied to the water sources. Accompanies Md_summary.
-6. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
-7. Weather_station_data - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv") - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
-8. Weather_data_field_mapping - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv") - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
-
 
 ### Tools
 
@@ -71,10 +67,6 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
     - [Download here](link)
 - PowerBI - version
     - [Download here]([link](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update))
-- Google Colab - version
-    - [Go to site]([link](https://colab.google/))
-- VSCode - version
-    - [Download here]([link](https://code.visualstudio.com/download))
 
 ### Data Cleaning/Preparations
 
@@ -89,15 +81,6 @@ For Water Related Data:
 5. Are the citizens able to safely collect water from public water sources?
 6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
 
-For Farming Data:
-
-1. Understand what of the variables, or **feature** variables in our dataset means.
-2. What the distributions of those feature variables are through univariate analysis.
-3. What the are relationship between the feature variables. What are the relationships between the feature variables and our target variable `Standard_yield`. We do this by doing a multivariate analysis.
-
-**What affects the `Standard_yield`**? Do all crops do better in high rainfall places? Do all crops grow better on flat terrain where the slope is low?
-
-
 #### Hypothesis
 
 For Water Related Data:  
@@ -108,8 +91,6 @@ For Water Related Data:
 4. There are more rural sources than there are urban sources. 
 5. No, the citizens aren't able to safely collect water from public water sources.
 6. Women have the hardest time collecting water.
-
-For Farming Data:
 
 #### Approach
 
@@ -123,8 +104,6 @@ For Water Related Data:
 |4| location_id, location_type| Features are in one table| rural_sources_percent|
 |5| Crime_id, victim_gender, time_of_day| Features are in one table| Maji Ndogo Crime-related Data Report: Number of Crimes by hour of day|
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
-
-For Farming Data:
 
 ### EDA (Exploritory Data Analysis)
 
@@ -186,50 +165,6 @@ Uploaded "Md_water_services_data" on to Power BI Desktop. Cleaned it by making s
 
 ```DAX
 ```
-
-#### Python Packages:
-
-The farm survey data source was read into a Data Frame and cleaned first:
-
-- Columns that were switched (`Annual_yield`, `Crop_type_Temp`), where Identified and switched back
-
-```python
-MD_agric_df.rename(columns={'Annual_yield': 'Crop_type_Temp', 'Crop_type': 'Annual_yield'}, inplace=True)
-MD_agric_df.rename(columns={'Crop_type_Temp': 'Crop_type'}, inplace=True)
-``` 
-- Certain entries of `Elevation` were negative (impossible), they were also fixed
-
-```python
-MD_agric_df['Elevation'] = MD_agric_df['Elevation'].abs()
-```
-- Certain `Crop_type` entries were incorrect
-```python
-def correct_crop_type(crop):
-    crop = crop.strip()  # Remove trailing spaces
-    corrections = {
-        'cassaval': 'cassava',
-        'wheatn': 'wheat',
-        'teaa': 'tea'
-    }
-    return corrections.get(crop, crop)  # Get the corrected crop type, or return the original if not in corrections
-
-# Apply the correction function to the Crop_type column
-MD_agric_df['Crop_type'] = MD_agric_df['Crop_type'].apply(correct_crop_type)
-```
-
-Used df.info() or df.describe() to understand the data we have access to
-
-```python
-MD_agric_df.info()
-```
-![df info()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/039f8d61-bce7-4f1e-a83e-fbbfebc0a331)
-
-
-```python
-MD_agric_df.describe()
-```
-![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
-
 
 ### Data Analysis
 
@@ -413,6 +348,152 @@ Comments TEXT
 Created data reports on Crime-related data, User reports for national and provincial stakeholders, and a dashboard that the public could access to know about what was done in their area and just how much more was left to do, as well as the associated costs and key influencers.
 <!-- FIX -->
 
+
+### Results/Findings
+
+#### SQL:
+
+Water Accessibility and infrastructure Summary Report:
+---
+1. Most water sources are rural (60%).
+2. 43% of our people are using shared taps. 2000 people often share one tap.
+3. 31% of our population has water infrastructure in their homes, but within that group, 45% face non-functional systems due to issues with pipes, pumps, and reservoirs. 55% have functioning in-home taps.
+4. 18% of our people are using wells, but within that, only 28% are clean.
+5. Our citizens often face long wait times for water, averaging more than 120 minutes.
+6. In terms of queues:
+- Queues are very long on Saturdays.
+- Queues are longer in the mornings and evenings.
+- Wednesdays and Sundays have the shortest queues.
+7. Sokoto has the largest population of people drinking river water. 
+8. The majority of water from Amanzi comes from taps, but half of these in-home taps don't work because the infrastructure is broken. 
+
+Auditor report:
+---
+An audit was conducted to assess the validity of the data - whether the current records were an accurate depiction of the country's water situation. The results were as follows:
+Employees Zuriel Matembo, Malachi Mavuso, Bello Azibo and Lalitha Kaburi made more mistakes than their peers on average. And they all have incriminating statements made against them, and only them.
+
+The sources the four employees assessed could have had their issues gone unrecognised and unsolved had there not been an audit.
+
+#### Data Visualisation & Storytelliing with PowerBI:
+
+- It is almost twice as expensive to improve a source in a rural area, compared to an urban area.
+- Sokoto has a very high average cost of improvement, both rurally and in urban areas.
+- We are over budget in every province.
+- We underestimated the cost of rural improvements in Sokoto
+
+### Recommendations
+
+<!-- For Water Related Issues (Project Water for Everyone): -->
+
+1. If communities are using rivers, we can dispatch trucks to those regions to provide water temporarily in the short term, while we send out
+crews to drill for wells, providing a more permanent solution.
+2. If communities are using wells, we can install filters to purify the water. For wells with biological contamination, we can install UV filters that kill microorganisms, and for *polluted wells*, we can install reverse osmosis filters. In the long term, we need to figure out why these sources are polluted.
+3. For shared taps, in the short term, we can send additional water tankers to the busiest taps, on the busiest days. We can use the queue time
+pivot table we made to send tankers at the busiest times. Meanwhile, we can start the work on installing extra taps where they are needed.
+According to UN standards, the maximum acceptable wait time for water is 30 minutes. With this in mind, our aim is to install taps to get
+queue times below 30 min.
+4. Shared taps with short queue times (< 30 min) represent a logistical challenge to further reduce waiting times. The most effective solution,
+installing taps in homes, is resource-intensive and better suited as a long-term goal.
+5. Addressing broken infrastructure offers a significant impact even with just a single intervention. It is expensive to fix, but so many people
+can benefit from repairing one facility. For example, fixing a reservoir or pipe that multiple taps are connected to. We will have to find the
+commonly affected areas though to see where the problem actually is. --fix!
+6. Investigate corruption and create policies to combat it. This can involve division of duty 
+
+**Data Visualisation & Storytelling:**
+
+### Data Sources
+6. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
+7. Weather_station_data - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv") - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
+8. Weather_data_field_mapping - [click to view]([link]"https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv") - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
+
+
+### Tools
+- Google Colab - version
+    - [Go to site]([link](https://colab.google/))
+- VSCode - version
+    - [Download here]([link](https://code.visualstudio.com/download))
+
+### Data Cleaning/Preparations
+
+#### Questions
+<!-- /Create 2-3 questions that you want to answer with the data: -->
+<!-- T​his will be easier to answer once you've had an opportunity to look at the data and do some initial exploration. -->
+<!-- D​on't get carried away on the analysis piece at this stage as there will be more analysis later. -->
+<!-- D​o focus on key data elements that are present. For instance: What are they, when are they, who are they about? Do they connect? How do they connect? Jot down ideas as you brainstorm./ -->
+For Farming Data:
+
+1. Understand what of the variables, or **feature** variables in our dataset means.
+2. What the distributions of those feature variables are through univariate analysis.
+3. What the are relationship between the feature variables. What are the relationships between the feature variables and our target variable `Standard_yield`. We do this by doing a multivariate analysis.
+
+**What affects the `Standard_yield`**? Do all crops do better in high rainfall places? Do all crops grow better on flat terrain where the slope is low?
+
+
+#### Hypothesis
+<!-- /W​hat are your initial hypotheses about the data? -->
+<!-- W​rite 2-3 assumptions about the data that you'll want to go back to prove or disprove. You will want to keep them in front of you as you look at the data to keep them or change them. You may see relationships that you want to explore and will develop a "belief" about the data.  -->
+<!-- Start documenting what you think you can tell from the data.  -->
+<!-- What pops up as interesting to you? Most likely it will be interesting to others as well. -->
+<!-- U​se the discussion boards to discuss with others about your client and the data to brainstorm together./ -->
+
+
+#### Approach
+<!-- /Describe in 5-6 sentences w​hat approach you are going to take in order to prove (or disprove) your hypotheses. Think about the following in your answer:  -->
+<!-- W​hat features (fields/columns) are you going to look at first? -->
+<!-- I​s there a relationship that exists that you want to explore? -->
+<!-- W​hat metric/ evaluation measure will you use?/ -->
+
+
+### EDA (Exploritory Data Analysis)
+<!-- /Describe the steps you took to import and clean the data -->
+<!-- Perform initial exploration of data and provide some screenshots or display some stats of the data you are looking at. -->
+<!-- Create an ERD or proposed ERD to show the relationships of the data you are exploring./  -->
+#### Python Packages:
+
+The farm survey data source was read into a Data Frame and cleaned first:
+
+- Columns that were switched (`Annual_yield`, `Crop_type_Temp`), where Identified and switched back
+
+```python
+MD_agric_df.rename(columns={'Annual_yield': 'Crop_type_Temp', 'Crop_type': 'Annual_yield'}, inplace=True)
+MD_agric_df.rename(columns={'Crop_type_Temp': 'Crop_type'}, inplace=True)
+``` 
+- Certain entries of `Elevation` were negative (impossible), they were also fixed
+
+```python
+MD_agric_df['Elevation'] = MD_agric_df['Elevation'].abs()
+```
+- Certain `Crop_type` entries were incorrect
+```python
+def correct_crop_type(crop):
+    crop = crop.strip()  # Remove trailing spaces
+    corrections = {
+        'cassaval': 'cassava',
+        'wheatn': 'wheat',
+        'teaa': 'tea'
+    }
+    return corrections.get(crop, crop)  # Get the corrected crop type, or return the original if not in corrections
+
+# Apply the correction function to the Crop_type column
+MD_agric_df['Crop_type'] = MD_agric_df['Crop_type'].apply(correct_crop_type)
+```
+
+Used df.info() or df.describe() to understand the data we have access to
+
+```python
+MD_agric_df.info()
+```
+![df info()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/039f8d61-bce7-4f1e-a83e-fbbfebc0a331)
+
+
+```python
+MD_agric_df.describe()
+```
+![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
+
+
+
+### Data Analysis
 #### Python Packages:
 
 Created a KDE plot of rainfall distribution split by soil types
@@ -515,37 +596,6 @@ sns.pairplot(coffee_df)
 - Highly polluted areas lower the crop output of coffee. Pollution has a significant effect on the crop yield.
 
 ### Results/Findings
-
-#### SQL:
-
-Water Accessibility and infrastructure Summary Report:
----
-1. Most water sources are rural (60%).
-2. 43% of our people are using shared taps. 2000 people often share one tap.
-3. 31% of our population has water infrastructure in their homes, but within that group, 45% face non-functional systems due to issues with pipes, pumps, and reservoirs. 55% have functioning in-home taps.
-4. 18% of our people are using wells, but within that, only 28% are clean.
-5. Our citizens often face long wait times for water, averaging more than 120 minutes.
-6. In terms of queues:
-- Queues are very long on Saturdays.
-- Queues are longer in the mornings and evenings.
-- Wednesdays and Sundays have the shortest queues.
-7. Sokoto has the largest population of people drinking river water. 
-8. The majority of water from Amanzi comes from taps, but half of these in-home taps don't work because the infrastructure is broken. 
-
-Auditor report:
----
-An audit was conducted to assess the validity of the data - whether the current records were an accurate depiction of the country's water situation. The results were as follows:
-Employees Zuriel Matembo, Malachi Mavuso, Bello Azibo and Lalitha Kaburi made more mistakes than their peers on average. And they all have incriminating statements made against them, and only them.
-
-The sources the four employees assessed could have had their issues gone unrecognised and unsolved had there not been an audit.
-
-#### Data Visualisation & Storytelliing with PowerBI:
-
-- It is almost twice as expensive to improve a source in a rural area, compared to an urban area.
-- Sokoto has a very high average cost of improvement, both rurally and in urban areas.
-- We are over budget in every province.
-- We underestimated the cost of rural improvements in Sokoto
-
 #### Python Packages:
 
 - Location and Rainfall are connected, and that Rainfall and Crop_type are connected
@@ -554,21 +604,8 @@ The sources the four employees assessed could have had their issues gone unrecog
 
 ### Recommendations
 
-<!-- For Water Related Issues (Project Water for Everyone): -->
 
-1. If communities are using rivers, we can dispatch trucks to those regions to provide water temporarily in the short term, while we send out
-crews to drill for wells, providing a more permanent solution.
-2. If communities are using wells, we can install filters to purify the water. For wells with biological contamination, we can install UV filters that kill microorganisms, and for *polluted wells*, we can install reverse osmosis filters. In the long term, we need to figure out why these sources are polluted.
-3. For shared taps, in the short term, we can send additional water tankers to the busiest taps, on the busiest days. We can use the queue time
-pivot table we made to send tankers at the busiest times. Meanwhile, we can start the work on installing extra taps where they are needed.
-According to UN standards, the maximum acceptable wait time for water is 30 minutes. With this in mind, our aim is to install taps to get
-queue times below 30 min.
-4. Shared taps with short queue times (< 30 min) represent a logistical challenge to further reduce waiting times. The most effective solution,
-installing taps in homes, is resource-intensive and better suited as a long-term goal.
-5. Addressing broken infrastructure offers a significant impact even with just a single intervention. It is expensive to fix, but so many people
-can benefit from repairing one facility. For example, fixing a reservoir or pipe that multiple taps are connected to. We will have to find the
-commonly affected areas though to see where the problem actually is. --fix!
-6. Investigate corruption and create policies to combat it. This can involve division of duty 
+### Limitations
 
-**Data Visualisation & Storytelling:**
 
+### References
