@@ -20,17 +20,29 @@
 
 [Recommendations](#recommendations)
 
-[## Maji Ndogo's Farming Data:]()
+[Maji Ndogo's Farming Data:]()
 
 
 ## Project Overview
 
-Maji Ndogo is a fictional country with problems that mimic real-world issues that are faced by many people in many places across the globe. Multiple areas/fictional issues will be addressed throughout the course of this project. Each of the different parts of this project will use a different skill to showcase my knowledge and practical application of each necessary skill for a Data Scientist. This project will appeal to persons and organisations that are interested in finding solutions to problems that plaugue a lot of 3rd world/under developed and developing countries as well as persons and organisations that wish for the SDG goals to be reached. It will also appeal to persons who wish to say what I can do - as part of my job application for a Data Analyst/ Data Scientist posts.
+Maji Ndogo is a fictional country designed to reflect real-world challenges encountered by many communities worldwide. This project aims to address various issues faced by Maji Ndogo, each highlighting a different aspect of data science skills.
+
+The project will appeal to individuals and organizations interested in solving problems common in third-world, underdeveloped, and developing countries, as well as those working towards achieving the Sustainable Development Goals (SDGs). Additionally, it serves as a showcase of my skills and practical applications for roles in data analysis and data science.
 
 ### SQL:
-The first area that is addressed is the state of the water sources in the country. This first part of the project is motivated by SDG Goal 6: Clean Water and Sanitation. This is the goal that aims ensure availability and sustainable management of water and sanitation for all. Here I will clean, analyse and visualise 60 000 records that can be found in Data sources one (1) and two (2). This data will from here on be referred to as "Water Related Data"
+The first area that is addressed is the state of the water sources in the country. This first part of the project is motivated by SDG Goal 6 (Clean Water and Sanitation). This is the goal that aims ensure availability and sustainable management of water and sanitation for all. Here I will clean, analyse and visualise 60 000 records that can be found in the Data sources section. This data will from here on be referred to as "Water Related Data"
 
-*Key Findings:  Most water sources are rural (60%); 43% of citizens are using shared taps (2000 people per tap); 31% of our population has water infrastructure in their homes, but within that group, 45% face non-functional systems due to issues with pipes, pumps, and reservoirs; 18% of our people are using wells, but within that, only 28% are clean; Citizens often face long wait times for water, averaging more than 120 minutes.* 
+**Key Findings:**
+
+- Rural Dominance: Approximately 60% of water sources are located in rural areas.
+- Shared Taps: 43% of citizens rely on shared taps, with an average of 2000 people per tap.
+- Water Infrastructure: While 31% of the population has water infrastructure in their homes, 45% of this group face non-functional systems due to issues with pipes, pumps, and reservoirs.
+- Well Usage: 18% of the population uses wells, but only 28% of these wells are clean.
+- Wait Times: Citizens often experience long wait times for water, averaging more than 120 minutes.
+
+**Implications:**
+
+These findings highlight significant challenges related to water access and quality in Maji Ndogo, underscoring the urgent need for improved infrastructure and management strategies to ensure clean and sustainable water sources for all citizens.
 
 ### Data Visualisation & Storytelliing with PowerBI:
 Miscrosoft PowerBI Desktop is used to visualise the data from the SQL part of the project in order to gain more insights and identify patterns that would have otherwise gone unnoticed. 
