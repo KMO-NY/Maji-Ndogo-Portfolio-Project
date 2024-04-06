@@ -30,7 +30,7 @@ Maji Ndogo is a fictional country designed to reflect real-world challenges enco
 The project will appeal to individuals and organizations interested in solving problems common in third-world, underdeveloped, and developing countries, as well as those working towards achieving the Sustainable Development Goals (SDGs). Additionally, it serves as a showcase of my skills and practical applications for roles in data analysis and data science.
 
 ### SQL:
-The first area that is addressed is the state of the water sources in the country. This first part of the project is motivated by SDG Goal 6 (Clean Water and Sanitation). This is the goal that aims ensure availability and sustainable management of water and sanitation for all. Here I will clean, analyse and visualise 60 000 records that can be found in the Data sources section. This data will from here on be referred to as "Water Related Data"
+The first area that is addressed is the state of the water sources in the country. This first part of the project is motivated by SDG Goal 6 (Clean Water and Sanitation). This is the goal that aims ensure availability and sustainable management of water and sanitation for all. Here I will clean, analyse and visualise 60 000 records that can be found in the Data sources section (1.1.1 and 1.1.2). This data will from here on be referred to as "Water Related Data"
 
 **Key Findings:**
 
@@ -45,10 +45,19 @@ The first area that is addressed is the state of the water sources in the countr
 These findings highlight significant challenges related to water access and quality in Maji Ndogo, underscoring the urgent need for improved infrastructure and management strategies to ensure clean and sustainable water sources for all citizens.
 
 ### Data Visualisation & Storytelliing with PowerBI:
-Miscrosoft PowerBI Desktop is used to visualise the data from the SQL part of the project in order to gain more insights and identify patterns that would have otherwise gone unnoticed. 
-Visualisations from approx. 25 000 records from the `project_progress` and related tables - uses data sources 3 to 5.
+This phase of the project follows the SQL analysis and utilizes Microsoft Power BI Desktop to visualize a subset of the data (approximately 25,000 records) from the project_progress and related tables, sourced from Data sources 1.1.3 to 1.1.5. The goal is to extract additional insights and identify patterns that may have been overlooked during the SQL analysis.
 
-*Key Findings: 69% of water collectors are women; 64% of crime victims in water related crimes are also women; It is almost twice as expensive to improve a source in a rural area, compared to an urban area; We are over budget in every province.*  
+**Key Findings:**
+
+- Gender Disparity: 69% of water collectors are women, indicating a gender disparity in water-related responsibilities.
+- Crime Victims: 64% of crime victims in water-related crimes are also women, highlighting a gender-specific impact of such crimes.
+- Cost Disparity: It is nearly twice as expensive to improve a water source in rural areas compared to urban areas, suggesting significant cost disparities based on location.
+- Budget Overshoot: The project is over budget in every province, indicating potential issues with budget management or project planning.
+
+**Implications:**
+
+These findings underscore the need for targeted interventions to address gender disparities in water-related responsibilities and crimes. Additionally, there is a clear need for more efficient budget management strategies, especially in rural areas where costs are significantly higher.
+
 
 ### Python Packages:
 Secondly, the Agricultural sector will be analysed. This will be done with the goal of automating farming in Maji Ndogo, a place with diverse and challenging agricultural landscapes. The long-term goal is to have fully autonomous farming equipment that can intelligently manage and optimise agricultural processes. This part of the project aligns with multiple SDG goals, namely:
