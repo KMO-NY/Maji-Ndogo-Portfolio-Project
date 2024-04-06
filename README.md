@@ -55,17 +55,17 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
-## Maji Ndogo's Water-related Data:
+## 1. Maji Ndogo's Water-related Data:
 
-### Data Sources
+### 1.1 Data Sources
 
-1. md_water_services.sql - A database containing the records captured from a water survey conducted in Maji Ndogo - accompanied by a data dictionary titled "Data_dictionary"
-2. Auditor_report.csv - A table containing 1620 audited records from the water_quality table, quality scores - accompanied by a data dictionary titled "Data dictionary_ auditor_report"
-3. Md_summary.csv - A summary informed by the ```project_progress``` table. Contains data of water sources that need to be fixed.
-4. Md_water_services_data.xlsx - comes in variations Md_water_services_data, 2-Md_water_services_data, 3-Md_water_services_data, 4-Md_water_services_data. Updates ```project_progress``` and related tables up to 2027 (time period: 2022 - 2027). 
-5. Md_queue_related_crime.csv - Records of crimes that can be tied to the water sources. Accompanies Md_summary.
+1.1.1. md_water_services.sql - A database containing the records captured from a water survey conducted in Maji Ndogo - accompanied by a data dictionary titled "Data_dictionary"
+1.1.2. Auditor_report.csv - A table containing 1620 audited records from the water_quality table, quality scores - accompanied by a data dictionary titled "Data dictionary_ auditor_report"
+1.1.3. Md_summary.csv - A summary informed by the ```project_progress``` table. Contains data of water sources that need to be fixed.
+1.1.4. Md_water_services_data.xlsx - comes in variations Md_water_services_data, 2-Md_water_services_data, 3-Md_water_services_data, 4-Md_water_services_data. Updates ```project_progress``` and related tables up to 2027 (time period: 2022 - 2027). 
+1.1.5. Md_queue_related_crime.csv - Records of crimes that can be tied to the water sources. Accompanies Md_summary.
 
-### Tools
+### 1.2 Tools
 
 - MySQL - version 8.0.36
     - [Download here](https://dev.mysql.com/)
@@ -75,27 +75,27 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 - PowerBI - version 2.126.1261.0
     - [Download here](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update)
 
-### Data Cleaning/Preparations
+### 1.3 Data Cleaning/Preparations
 
-#### Questions
+#### 1.3.1 Questions
 
-1. What percentage of the water sources is safe for public use and consumption?
-2. How long are people standing in queues on average?
-3. How many of the private taps are functioning and safe to consume?
-4. What is the ratio of rural and urban water sources? 
-5. Are the citizens able to safely collect water from public water sources?
-6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
+1.3.1.1. What percentage of the water sources is safe for public use and consumption?
+1.3.1.2. How long are people standing in queues on average?
+1.3.1.3. How many of the private taps are functioning and safe to consume?
+1.3.1.4. What is the ratio of rural and urban water sources? 
+1.3.1.5. Are the citizens able to safely collect water from public water sources?
+1.3.1.6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
 
-#### Hypothesis
+#### 1.3.2 Hypothesis
 
-1. Less than half (50%) of the water from wells in Maji Ndogo is safe to consume.
-2. The average queue time is around 200 minutes.
-3. Out of all the private taps, Less than half (50%) are functioning and safe-to-consume.
-4. There are more rural sources than there are urban sources. 
-5. No, the citizens aren't able to safely collect water from public water sources.
-6. Women have the hardest time collecting water.
+1.3.2.1. Less than half (50%) of the water from wells in Maji Ndogo is safe to consume.
+1.3.2.2. The average queue time is around 200 minutes.
+1.3.2.3. Out of all the private taps, Less than half (50%) are functioning and safe-to-consume.
+1.3.2.4. There are more rural sources than there are urban sources. 
+1.3.2.5. No, the citizens aren't able to safely collect water from public water sources.
+1.3.2.6. Women have the hardest time collecting water.
 
-#### Approach
+#### 1.3.3 Approach
 
 |No.| Features| Relationships| Metrics|
 |---|---------|--------------|--------|
@@ -106,9 +106,9 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 |5| Crime_id, victim_gender, time_of_day| Features are in one table| Maji Ndogo Crime-related Data Report: Number of Crimes by hour of day|
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
 
-### EDA (Exploritory Data Analysis)
+### 1.4 EDA (Exploritory Data Analysis)
 
-#### SQL:
+#### 1.4.1 SQL:
 
 The md_water_services.sql file was uploaded to MySQL as a database. It was cleaned and analysed. The Auditor_report.csv was added as a table to the database (see script 3). This data was used to better understand the water-related problems faced as well as identify the water sources that weren't functioning, polluted or that just made it harder for citizens to collect water (by ways of crimes and exccessive queues). 
 
@@ -158,15 +158,15 @@ WHERE
 
 The 500 minute queue times were from "shared tap" water sources, whereas the 0 minute queue times were from "well" and "tap_in_home" water sources. 
 
-#### Data Visualisation & Storytelliing with PowerBI:
+#### 1.4.2 Data Visualisation & Storytelliing with PowerBI:
 
 Md_summary and Md_queue_related_crime were uploaded to Power BI Desktop. I familiarised myself with the data by looking at the total number of people served by Location type, water source type; and how the total was spread across provinces; average queue times by days of the week, hour of day, gender and number of people; the number of crimes by crime type, victim gender and provinces. The results are in "Maji_Ndogo Familiarizing ourselves with the Data" and "Maji_Ndogo Familiarizing ourselves with the Data 2". Alternatively, open report 1 and two for a more interactive view.
 
 Uploaded "Md_water_services_data" on to Power BI Desktop. Cleaned it by making sure features had their correct data types, and that the relationships were correct. Uploaded the variations and checked that the data was ready to be analysed.
 
-### Data Analysis
+### 1.5 Data Analysis
 
-#### SQL:
+#### 1.5.1 SQL:
 
 Created a well_pollution copy table to test update of errounously captured descriptions and results in well_pollution table:
 ```sql
@@ -341,16 +341,16 @@ Date_of_completion DATE,
 Comments TEXT 
 );
 ```
-#### Data Visualisation & Storytelliing with PowerBI:
+#### 1.5.2 Data Visualisation & Storytelliing with PowerBI:
 
 Created data reports on:
 - Crime-related data, 
 - User reports for national and provincial stakeholders, and
 - A dashboard that the public could access to know about what was done in their area and just how much more was left to do, as well as the associated costs and key influencers
 
-### Results/Findings
+### 1.6 Results/Findings
 
-#### SQL:
+#### 1.6.1 SQL:
 
 **Water Accessibility and infrastructure Summary Report:**
 
@@ -373,7 +373,7 @@ Employees Zuriel Matembo, Malachi Mavuso, Bello Azibo and Lalitha Kaburi made mo
 
 The sources the four employees assessed could have had their issues gone unrecognised and unsolved had there not been an audit.
 
-#### Data Visualisation & Storytelliing with PowerBI:
+#### 1.6.2 Data Visualisation & Storytelliing with PowerBI:
 
 - 69% of water collectors are women
 - 64% of crime victims in water related crimes are also women
@@ -383,7 +383,9 @@ The sources the four employees assessed could have had their issues gone unrecog
 - We underestimated the cost of rural improvements in Sokoto
 - Some vendors spend more of the budget because they move around when fixing water sources instead of fixing the water sources that are next to each to other.
 
-### Recommendations
+### 1.7 Recommendations
+
+#### 1.7.1 SQL:
 
 1. If communities are using rivers, we can dispatch trucks to those regions to provide water temporarily in the short term, while we send out
 crews to drill for wells, providing a more permanent solution.
@@ -396,49 +398,42 @@ queue times below 30 min.
 installing taps in homes, is resource-intensive and better suited as a long-term goal.
 5. Addressing broken infrastructure offers a significant impact even with just a single intervention. It is expensive to fix, but so many people
 can benefit from repairing one facility. For example, fixing a reservoir or pipe that multiple taps are connected to. We will have to find the
-commonly affected areas though to see where the problem actually is. --fix!
+commonly affected areas though to see where the problem actually is. 
 6. Investigate corruption and create policies to combat it. This can involve division of duty and randomised check-ups on work done.
 
-#### Data Visualisation & Storytelliing with PowerBI:
-
-Based on the provided information, here are some recommendations:
+#### #### 1.7.2 Data Visualisation & Storytelliing with PowerBI:
 
 1. Since a large percentage of water collectors and crime victims in water-related crimes are women, efforts should be made to ensure that water access and safety measures are gender-inclusive. This could include providing training and resources specifically tailored to women, ensuring their safety in water collection and usage.
-
 2. Given the higher cost of improving water sources in rural areas, strategies should be developed to make these improvements more cost-effective. This might involve exploring alternative technologies or construction methods that are more suitable for rural environments.
-
 3. With all provinces being over budget, a thorough review of the budget and expenses should be conducted. Identify areas where costs can be reduced or reallocated to stay within budget.
-
 4. To address the issue of vendors moving around instead of focusing on nearby water sources, consider implementing stricter guidelines or incentives to encourage vendors to prioritize efficiency and cost-effectiveness in their work.
-
 5. Since the cost of rural improvements in Sokoto was underestimated, a reassessment of the budget and project scope in Sokoto specifically is necessary. Adjustments should be made to ensure that adequate funding is allocated to complete the necessary improvements.
-
 6. Continuously monitor and analyze data related to project costs, vendor activities, and gender-specific issues to identify trends and areas for improvement. This can help in making informed decisions and improving project efficiency over time.
 
-## Maji Ndogo's Farming Data:
+## 2. Maji Ndogo's Farming Data:
 
-### Data Sources
-6. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
-7. Weather_station_data - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv) - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
-8. Weather_data_field_mapping - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv) - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
+### 2.1 Data Sources
+2.1.1. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
+2.1.2. Weather_station_data - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv) - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
+2.1.3. Weather_data_field_mapping - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv) - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
 
 
-### Tools
+### 2.2 Tools
 - Google Colab 
     - [Go to site](https://colab.google/)
 - VSCode - version 1.88.0
     - [Download here](https://code.visualstudio.com/download)
 
-### Data Cleaning/Preparations
+### 2.3 Data Cleaning/Preparations
 
-#### Questions
+#### 2.3.1 Questions
 <!-- /Create 2-3 questions that you want to answer with the data: -->
 <!-- T​his will be easier to answer once you've had an opportunity to look at the data and do some initial exploration. -->
 <!-- D​on't get carried away on the analysis piece at this stage as there will be more analysis later. -->
 <!-- D​o focus on key data elements that are present. For instance: What are they, when are they, who are they about? Do they connect? How do they connect? Jot down ideas as you brainstorm./ -->
 For Farming Data:
 
-1. Understand what of the variables, or **feature** variables in our dataset means.
+2.3.1. Understand what of the variables, or **feature** variables in our dataset means.
 2. What the distributions of those feature variables are through univariate analysis.
 3. What the are relationship between the feature variables. What are the relationships between the feature variables and our target variable `Standard_yield`. We do this by doing a multivariate analysis.
 
@@ -621,7 +616,3 @@ sns.pairplot(coffee_df)
 ### Recommendations
 
 
-### Limitations
-
-
-### References
