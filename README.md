@@ -651,7 +651,7 @@ print(std_correlation_coeffs)
 ```
 ![standard_yield_correlation-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/055b9259-86f0-4570-b717-1b1570447cf4)
 
-Created a DataFrame for only coffee crops, and then looked at the pairplot of this DataFrame to understand what affects the coffee crop. By doing this we can remove some of the complexity brought by the different crop types.
+Created a DataFrame for only coffee crops (this was done for other crops as well), and then looked at the pairplot of this DataFrame to understand what affects the coffee crop. By doing this we can remove some of the complexity brought by the different crop types.
 
 ```python
 coffee_df = MD_agric_df.query("Crop_type == 'coffee'")
@@ -661,6 +661,8 @@ coffee_df = coffee_df.drop(columns = ['Crop_type','Field_ID','Annual_yield'])
 sns.pairplot(coffee_df)
 ```
 ![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
+
+Calculated the means of the Weather_station_data (`weather_station_means`) and Weather_data_field_mapping (`MD_agric_df_weather_means`) then checked if the means are within 1.5% of one another.
 
 
 ### 2.6. Results/Findings
