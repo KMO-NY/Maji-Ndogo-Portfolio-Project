@@ -4,23 +4,75 @@
 ---
 [Project Overview](#project-overview)
 
-[Maji Ndogo's Water-related Data](link)
+[Instructions](#instructions)
 
-[Data Sources](#data-sources)
+[1. Maji Ndogo's Water-related Data](#1-maji-ndogos-water-related-data)
 
-[Tools](#tools)
+[1.1. Data Sources](#11-data-sources)
 
-[Data Cleaning/Preparations](#data-cleaningpreparations)
+[1.2. Tools](#12-tools)
 
-[EDA (Exploratory Data Analysis)](#eda-exploritory-data-analysis)
+[1.3. Data Cleaning/Preparations](#13-data-cleaningpreparations)
 
-[Data Analysis](#data-analysis)
+[1.3.1. Questions](#131-questions)
 
-[Results/Findings](#resultsfindings)
+[1.3.2. Hypothesis](#132-hypothesis)
 
-[Recommendations](#recommendations)
+[1.3.3. Approach](#133-approach)
 
-[Maji Ndogo's Farming Data:]()
+[1.4. EDA (Exploritory Data Analysis)](#14-eda-exploritory-data-analysis)
+
+[1.4.1. SQL](#141-sql)
+
+[1.4.2. Data Visualisation & Storytelliing with PowerBI](#142-data-visualisation--storytelliing-with-powerbi)
+
+[1.5. Data Analysis](#15-data-analysis)
+
+[1.5.1. SQL](#151-sql)
+
+[1.5.2. Data Visualisation & Storytelliing with PowerBI](#152-data-visualisation--storytelliing-with-powerbi)
+
+[1.6. Results/Findings](#16-resultsfindings)
+
+[1.6.1 SQL](#161-sql)
+
+[1.6.2 Data Visualisation & Storytelliing with PowerBI](#162-data-visualisation--storytelliing-with-powerbi)
+
+[1.7. Recommendations](#17-recommendations)
+
+[1.7.1. SQL](#171-sql)
+
+[1.7.2 Data Visualisation & Storytelliing with PowerBI](#172-data-visualisation--storytelliing-with-powerbi)
+
+[2. Maji Ndogo's Farming Data](#2-maji-ndogos-farming-data)
+
+[2.1. Data Sources](#21-data-sources)
+
+[2.2. Tools](#22-tools)
+
+[2.3. Data Cleaning/Preparations](#23-data-cleaningpreparations)
+
+[2.3.1. Questions](#231-questions)
+
+[2.3.2. Hypothesis](#232-hypothesis)
+
+[2.3.3. Approach](#233-approach)
+
+[2.4. EDA (Exploritory Data Analysis)](#24-eda-exploritory-data-analysis)
+
+[2.4.1. Python Packages](#241-python-packages)
+
+[2.5. Data Analysis](#25-data-analysis)
+
+[2.5.1. Python Packages](#251-python-packages)
+
+[2.6. Results/Findings](#26-resultsfindings)
+
+[2.6.1. Python Packages](#261-python-packages)
+
+[2.7. Recommendations](#27-recommendations)
+
+[2.7.1. Python Packages](#271-python-packages)
 
 
 ## Project Overview
@@ -81,7 +133,7 @@ This section is applicable to persons who wish to load the files of the project 
 
 ## 1. Maji Ndogo's Water-related Data:
 
-### 1.1 Data Sources
+### 1.1. Data Sources
 
 1.1.1. md_water_services.sql - A database containing the records captured from a water survey conducted in Maji Ndogo - accompanied by a data dictionary titled "Data_dictionary"
 1.1.2. Auditor_report.csv - A table containing 1620 audited records from the water_quality table, quality scores - accompanied by a data dictionary titled "Data dictionary_ auditor_report"
@@ -89,7 +141,7 @@ This section is applicable to persons who wish to load the files of the project 
 1.1.4. Md_water_services_data.xlsx - comes in variations Md_water_services_data, 2-Md_water_services_data, 3-Md_water_services_data, 4-Md_water_services_data. Updates ```project_progress``` and related tables up to 2027 (time period: 2022 - 2027). 
 1.1.5. Md_queue_related_crime.csv - Records of crimes that can be tied to the water sources. Accompanies Md_summary.
 
-### 1.2 Tools
+### 1.2. Tools
 
 - MySQL - version 8.0.36
     - [Download here](https://dev.mysql.com/)
@@ -99,9 +151,9 @@ This section is applicable to persons who wish to load the files of the project 
 - PowerBI - version 2.126.1261.0
     - [Download here](https://powerbi.microsoft.com/en-us/desktop/?WT.mc_id=Blog_Desktop_Update)
 
-### 1.3 Data Cleaning/Preparations
+### 1.3. Data Cleaning/Preparations
 
-#### 1.3.1 Questions
+#### 1.3.1. Questions
 
 1.3.1.1. What percentage of the water sources is safe for public use and consumption?
 1.3.1.2. How long are people standing in queues on average?
@@ -110,7 +162,7 @@ This section is applicable to persons who wish to load the files of the project 
 1.3.1.5. Are the citizens able to safely collect water from public water sources?
 1.3.1.6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
 
-#### 1.3.2 Hypothesis
+#### 1.3.2. Hypothesis
 
 1.3.2.1. Less than half (50%) of the water from wells in Maji Ndogo is safe to consume.
 1.3.2.2. The average queue time is around 200 minutes.
@@ -119,7 +171,7 @@ This section is applicable to persons who wish to load the files of the project 
 1.3.2.5. No, the citizens aren't able to safely collect water from public water sources.
 1.3.2.6. Women have the hardest time collecting water.
 
-#### 1.3.3 Approach
+#### 1.3.3. Approach
 
 |No.| Features| Relationships| Metrics|
 |---|---------|--------------|--------|
@@ -130,9 +182,9 @@ This section is applicable to persons who wish to load the files of the project 
 |5| Crime_id, victim_gender, time_of_day| Features are in one table| Maji Ndogo Crime-related Data Report: Number of Crimes by hour of day|
 |6| crime_type, victim_gender| Features are in one table| Maji Ndogo Crime-related Data Report: Gender Disparity Related to Water Collecters|
 
-### 1.4 EDA (Exploritory Data Analysis)
+### 1.4. EDA (Exploritory Data Analysis)
 
-#### 1.4.1 SQL:
+#### 1.4.1. SQL:
 
 The md_water_services.sql file was uploaded to MySQL as a database. It was cleaned and analysed. The Auditor_report.csv was added as a table to the database (see script 3). This data was used to better understand the water-related problems faced as well as identify the water sources that weren't functioning, polluted or that just made it harder for citizens to collect water (by ways of crimes and exccessive queues). 
 
@@ -182,15 +234,15 @@ WHERE
 
 The 500 minute queue times were from "shared tap" water sources, whereas the 0 minute queue times were from "well" and "tap_in_home" water sources. 
 
-#### 1.4.2 Data Visualisation & Storytelliing with PowerBI:
+#### 1.4.2. Data Visualisation & Storytelliing with PowerBI:
 
 Md_summary and Md_queue_related_crime were uploaded to Power BI Desktop. I familiarised myself with the data by looking at the total number of people served by Location type, water source type; and how the total was spread across provinces; average queue times by days of the week, hour of day, gender and number of people; the number of crimes by crime type, victim gender and provinces. The results are in "Maji_Ndogo Familiarizing ourselves with the Data" and "Maji_Ndogo Familiarizing ourselves with the Data 2". Alternatively, open report 1 and two for a more interactive view.
 
 Uploaded "Md_water_services_data" on to Power BI Desktop. Cleaned it by making sure features had their correct data types, and that the relationships were correct. Uploaded the variations and checked that the data was ready to be analysed.
 
-### 1.5 Data Analysis
+### 1.5. Data Analysis
 
-#### 1.5.1 SQL:
+#### 1.5.1. SQL:
 
 Created a well_pollution copy table to test update of errounously captured descriptions and results in well_pollution table:
 ```sql
@@ -365,14 +417,14 @@ Date_of_completion DATE,
 Comments TEXT 
 );
 ```
-#### 1.5.2 Data Visualisation & Storytelliing with PowerBI:
+#### 1.5.2. Data Visualisation & Storytelliing with PowerBI:
 
 Created data reports on:
 - Crime-related data, 
 - User reports for national and provincial stakeholders, and
 - A dashboard that the public could access to know about what was done in their area and just how much more was left to do, as well as the associated costs and key influencers
 
-### 1.6 Results/Findings
+### 1.6. Results/Findings
 
 #### 1.6.1 SQL:
 
@@ -407,9 +459,9 @@ The sources the four employees assessed could have had their issues gone unrecog
 - We underestimated the cost of rural improvements in Sokoto
 - Some vendors spend more of the budget because they move around when fixing water sources instead of fixing the water sources that are next to each to other.
 
-### 1.7 Recommendations
+### 1.7. Recommendations
 
-#### 1.7.1 SQL:
+#### 1.7.1. SQL:
 
 1. If communities are using rivers, we can dispatch trucks to those regions to provide water temporarily in the short term, while we send out
 crews to drill for wells, providing a more permanent solution.
@@ -425,7 +477,7 @@ can benefit from repairing one facility. For example, fixing a reservoir or pipe
 commonly affected areas though to see where the problem actually is. 
 6. Investigate corruption and create policies to combat it. This can involve division of duty and randomised check-ups on work done.
 
-#### #### 1.7.2 Data Visualisation & Storytelliing with PowerBI:
+#### 1.7.2 Data Visualisation & Storytelliing with PowerBI:
 
 1. Since a large percentage of water collectors and crime victims in water-related crimes are women, efforts should be made to ensure that water access and safety measures are gender-inclusive. This could include providing training and resources specifically tailored to women, ensuring their safety in water collection and usage.
 2. Given the higher cost of improving water sources in rural areas, strategies should be developed to make these improvements more cost-effective. This might involve exploring alternative technologies or construction methods that are more suitable for rural environments.
@@ -436,26 +488,25 @@ commonly affected areas though to see where the problem actually is.
 
 ## 2. Maji Ndogo's Farming Data:
 
-### 2.1 Data Sources
+### 2.1. Data Sources
 2.1.1. Maji_Ndogo_farm_survey_small.db - Database file that contains data from the MD_agric_exam-4313.csv. Includes information on farm fields in Maji Ndogo and its related Geographic features, Weather features, Soil and crop features, and Farm management features  - accompanied by a data dictionary titled "Farming Data Dictionary" 
 2.1.2. Weather_station_data - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_station_data.csv) - Contains the weather station unique ID and the message captured by its sensors - accompanied by a data dictionary titled "Farming Data Dictionary"
 2.1.3. Weather_data_field_mapping - [click to view](https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv) - Comprised of the weather station unique ID and the Field IDs linked to the weather station - accompanied by a data dictionary titled "Farming Data Dictionary"
 
 
-### 2.2 Tools
+### 2.2. Tools
 - Google Colab 
     - [Go to site](https://colab.google/)
 - VSCode - version 1.88.0
     - [Download here](https://code.visualstudio.com/download)
 
-### 2.3 Data Cleaning/Preparations
+### 2.3. Data Cleaning/Preparations
 
-#### 2.3.1 Questions
+#### 2.3.1. Questions
 <!-- /Create 2-3 questions that you want to answer with the data: -->
 <!-- T​his will be easier to answer once you've had an opportunity to look at the data and do some initial exploration. -->
 <!-- D​on't get carried away on the analysis piece at this stage as there will be more analysis later. -->
 <!-- D​o focus on key data elements that are present. For instance: What are they, when are they, who are they about? Do they connect? How do they connect? Jot down ideas as you brainstorm./ -->
-For Farming Data:
 
 2.3.1.1. Understand what of the variables, or **feature** variables in our dataset means.
 2. What the distributions of those feature variables are through univariate analysis.
@@ -464,7 +515,7 @@ For Farming Data:
 **What affects the `Standard_yield`**? Do all crops do better in high rainfall places? Do all crops grow better on flat terrain where the slope is low?
 
 
-#### 2.3.2 Hypothesis
+#### 2.3.2. Hypothesis
 <!-- /W​hat are your initial hypotheses about the data? -->
 <!-- W​rite 2-3 assumptions about the data that you'll want to go back to prove or disprove. You will want to keep them in front of you as you look at the data to keep them or change them. You may see relationships that you want to explore and will develop a "belief" about the data.  -->
 <!-- Start documenting what you think you can tell from the data.  -->
@@ -472,16 +523,16 @@ For Farming Data:
 <!-- U​se the discussion boards to discuss with others about your client and the data to brainstorm together./ -->
 
 
-#### 2.3.3 Approach
+#### 2.3.3. Approach
 <!-- /Describe in 5-6 sentences w​hat approach you are going to take in order to prove (or disprove) your hypotheses. Think about the following in your answer:  -->
 <!-- W​hat features (fields/columns) are you going to look at first? -->
 <!-- I​s there a relationship that exists that you want to explore? -->
 <!-- W​hat metric/ evaluation measure will you use?/ -->
 
 
-### 2.4 EDA (Exploritory Data Analysis)
+### 2.4. EDA (Exploritory Data Analysis)
 
-#### 2.4.1 Python Packages:
+#### 2.4.1. Python Packages:
 
 The farm survey data source was read into a Data Frame and cleaned first:
 
@@ -524,8 +575,9 @@ MD_agric_df.describe()
 ```
 ![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
 
-### 2.5 Data Analysis
-#### 2.5.1 Python Packages:
+### 2.5. Data Analysis
+
+#### 2.5.1. Python Packages:
 
 Created a KDE plot of rainfall distribution split by soil types
 
@@ -611,8 +663,9 @@ sns.pairplot(coffee_df)
 ![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
 
 
-### 2.6 Results/Findings
-#### 2.6.1 Python Packages:
+### 2.6. Results/Findings
+
+#### 2.6.1. Python Packages:
 
 - For rainfall distribution split by soil types: The distribution of the Slope variable is skewed a bit to the left, which means the mean value may not be the best measure of central tendency. Most values are below the mean, but because there are some extreme values influencing the mean calculation. We should be careful when we use this column in statistical calculations.
 - The KDE of Rainfall appears normal, but seems to have multiple peaks. This may indicate underlying patterns that are overlapping. We should take a closer look.
@@ -632,6 +685,6 @@ sns.pairplot(coffee_df)
 - one of the big takeaways from this analysis is that crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
 - Answer questions like, what makes tea grow well?
 
-### 2.7 Recommendations
+### 2.7. Recommendations
 
-
+#### 2.7.1. Python Packages:
