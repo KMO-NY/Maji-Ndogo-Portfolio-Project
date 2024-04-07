@@ -123,13 +123,34 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 - field_data_processor.py
 - weather_data_processor.py 
 
-*Key Findings: _* 
+**Key Findings:**
 
+- Data Accuracy: The data captured from the farm survey is found to be 53% inaccurate, highlighting challenges in data quality.
+- Crop Performance: No single feature can explain why a crop performs well. Weak correlations suggest that factors influencing crop success may not be linearly related, emphasizing the complexity of agricultural outcomes.
+
+**Implications:**
+
+- Data Quality Improvement: Addressing the 53% inaccuracy in farm survey data is crucial for making informed decisions. Efforts should be made to improve data collection methods and accuracy to ensure the reliability of analysis and decision-making processes.
+- Complexity of Crop Performance: The finding that no single feature can explain crop success indicates the complexity of agricultural systems. This underscores the need for advanced analytical techniques, such as machine learning, to uncover non-linear relationships and identify key factors influencing crop performance.
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
 
 ## Instructions:
-This section is applicable to persons who wish to load the files of the project into theie relevant IDEs. The section will cover things one should consider when doing so in order see the same results I saw when doing the project. Don't worry, the instructions are not complicated and will not take up a lot of your time!;
+This section is applicable to persons who wish to load the files of the project into their relevant IDEs. The section will cover things one should consider when doing so in order see the same results I saw when doing the project. Don't worry, the instructions are not complicated and will not take up a lot of your time!
+
+### SQL:
+
+For script 2: Replace my connection infomation with yours. Clear outputs after viewing as it can slow down your computer in you don't have a lot of space.
+
+For script 3: Import the .csv file as a table before running the script.
+
+### Data Visualisation & Storytelliing with PowerBI:
+
+For all reports: Ensure that the paths for the .csv, .xlsx files are updated to the path on your local machine.
+
+### Python Packages:
+
+The data_ingestion.py and Maji_Ndogo_farm_survey_small.db must be in the same folder as the other .py files for the files to run. When using Google Colab, upload them to the runtime first or nothing will work.
 
 ## 1. Maji Ndogo's Water-related Data:
 
@@ -156,20 +177,32 @@ This section is applicable to persons who wish to load the files of the project 
 #### 1.3.1. Questions
 
 1.3.1.1. What percentage of the water sources is safe for public use and consumption?
+
 1.3.1.2. How long are people standing in queues on average?
+
 1.3.1.3. How many of the private taps are functioning and safe to consume?
+
 1.3.1.4. What is the ratio of rural and urban water sources? 
+
 1.3.1.5. Are the citizens able to safely collect water from public water sources?
+
 1.3.1.6. Do factors such as age and gender affect a person's access to safe-to-consume water sources?
+
 
 #### 1.3.2. Hypothesis
 
 1.3.2.1. Less than half (50%) of the water from wells in Maji Ndogo is safe to consume.
+
 1.3.2.2. The average queue time is around 200 minutes.
+
 1.3.2.3. Out of all the private taps, Less than half (50%) are functioning and safe-to-consume.
+
 1.3.2.4. There are more rural sources than there are urban sources. 
+
 1.3.2.5. No, the citizens aren't able to safely collect water from public water sources.
+
 1.3.2.6. Women have the hardest time collecting water.
+
 
 #### 1.3.3. Approach
 
@@ -503,32 +536,47 @@ commonly affected areas though to see where the problem actually is.
 ### 2.3. Data Cleaning/Preparations
 
 #### 2.3.1. Questions
-<!-- /Create 2-3 questions that you want to answer with the data: -->
-<!-- T​his will be easier to answer once you've had an opportunity to look at the data and do some initial exploration. -->
-<!-- D​on't get carried away on the analysis piece at this stage as there will be more analysis later. -->
-<!-- D​o focus on key data elements that are present. For instance: What are they, when are they, who are they about? Do they connect? How do they connect? Jot down ideas as you brainstorm./ -->
 
-2.3.1.1. Understand what of the variables, or **feature** variables in our dataset means.
-2. What the distributions of those feature variables are through univariate analysis.
-3. What the are relationship between the feature variables. What are the relationships between the feature variables and our target variable `Standard_yield`. We do this by doing a multivariate analysis.
+2.3.1.1. What kind of crops does Maji Ndogo produce/farm?
 
-**What affects the `Standard_yield`**? Do all crops do better in high rainfall places? Do all crops grow better on flat terrain where the slope is low?
+2.3.1.2. What is the distributions of those feature variables per crop type?
+
+2.3.1.3. Which of the areas/locations in Maji Ndogo, produce the most for each crop type?
+
+2.3.1.4. What affects the `Standard_yield`?
+
+2.3.1.5.  Is there a variety of soil types in Maji Ndogo?
+
+2.3.1.6. How accurate is the data from the survey?
 
 
 #### 2.3.2. Hypothesis
-<!-- /W​hat are your initial hypotheses about the data? -->
-<!-- W​rite 2-3 assumptions about the data that you'll want to go back to prove or disprove. You will want to keep them in front of you as you look at the data to keep them or change them. You may see relationships that you want to explore and will develop a "belief" about the data.  -->
-<!-- Start documenting what you think you can tell from the data.  -->
-<!-- What pops up as interesting to you? Most likely it will be interesting to others as well. -->
-<!-- U​se the discussion boards to discuss with others about your client and the data to brainstorm together./ -->
 
+2.3.2.1. Maji Ndogo farms crops that require high rainfall.
+
+2.3.2.2. They are evenly distributed.
+
+2.3.2.3. High rainfall areas produce the most crops
+
+2.3.2.4. All of the the feature variables have a strong effect on the target variable (`Standard_yield`)
+
+2.3.2.5. Yes there is a variety of soil types in Maji Ndogo, the most common are the soil types that can receive large amounts of water (`Rainfall`)
+
+2.3.2.6. The data is 70% accurate.
 
 #### 2.3.3. Approach
 <!-- /Describe in 5-6 sentences w​hat approach you are going to take in order to prove (or disprove) your hypotheses. Think about the following in your answer:  -->
 <!-- W​hat features (fields/columns) are you going to look at first? -->
 <!-- I​s there a relationship that exists that you want to explore? -->
 <!-- W​hat metric/ evaluation measure will you use?/ -->
-
+|No.| Features| Relationships| Metrics|
+|---|---------|--------------|--------|
+|1| Rainfall, Crop_type| Rainfall, Crop_type| Violin plot, KDE plot|
+|2| ALL| ALL| Pairplots for each crop type|
+|3| Location, Rainfall| Location, Rainfall| Table: Average Rainfall by  Location, Crosstab: Crop_type by Location|
+|4| ALL| ALL| std_correlation_coeffs|
+|5| Soil_type, Rainfall| Soil_type, Rainfall| KDE plot|
+|6| Weather Station ID, Pollution_level, Temperature, Rainfall| Extracted Mean, Original Mean| Table: Weather Station ID, Extracted Mean, Original Mean, of Pollution_level, Temperature, Rainfall|
 
 ### 2.4. EDA (Exploritory Data Analysis)
 
@@ -662,7 +710,9 @@ sns.pairplot(coffee_df)
 ```
 ![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
 
+
 Calculated the means of the Weather_station_data (`weather_station_means`) and Weather_data_field_mapping (`MD_agric_df_weather_means`) then checked if the means are within 1.5% of one another.
+
 ```python
 def within_tolerance_percentage(extracted, original, tolerance_pct):
     """
@@ -756,3 +806,10 @@ check_means(MD_agric_df_weather_means, weather_station_means)
 ### 2.7. Recommendations
 
 #### 2.7.1. Python Packages:
+
+More data is needed: Create a data pipeline to process the different data from the different sources as it comes in for further analysis. 
+Create the following: 
+
+- data_ingestion.py
+- field_data_processor.py
+- weather_data_processor.py
