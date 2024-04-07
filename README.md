@@ -667,23 +667,21 @@ sns.pairplot(coffee_df)
 
 #### 2.6.1. Python Packages:
 
-- For rainfall distribution split by soil types: The distribution of the Slope variable is skewed a bit to the left, which means the mean value may not be the best measure of central tendency. Most values are below the mean, but because there are some extreme values influencing the mean calculation. We should be careful when we use this column in statistical calculations.
-- The KDE of Rainfall appears normal, but seems to have multiple peaks. This may indicate underlying patterns that are overlapping. We should take a closer look.
-- Akatsi, on average has a higher rainfall number than Kilimani, and Amanzi's average rainfall is quite similar to Kilimani, so there is no difference really. We can confirm this by grouping our data by `Location`, and calculating the means of the `Rainfall` column.
-- Amanzi is the province with the lowest average rainfall. Potatoes and maize seem to grow in lower rainfall regions. Is there a connection?
-- Sokoto has ... which means that...
-- Rice seems to grow mostly where there is about 1600 mm of annual rainfall, while Coffee can grow across a wide range of rainfall conditions. Does that mean Coffee is a more resilient crop than rice?
-- Bananas seem to prefer... so...
-- For Amanzi, potatoes, wheat and maize occur a lot more frequently than the other crops, and as we saw earlier, this is because Amanzi has less rainfall, making these crops more viable.
+- For rainfall distribution split by soil types: The distribution of the Slope variable is skewed a bit to the left, which means the mean value may not be the best measure of central tendency. Most values are below the mean, but because there are some extreme values influencing the mean calculation. 
+- The KDE of Rainfall appears normal, but seems to have multiple peaks. This may indicate underlying patterns that are overlapping.
+- Akatsi, on average has a higher rainfall number than Kilimani, and Amanzi's average rainfall is quite similar to Kilimani, so there is no difference really. 
+- Amanzi is the province with the lowest average rainfall. Potatoes and maize seem to grow in lower rainfall regions. 
+- Rice seems to grow mostly where there is about 1600 mm of annual rainfall, while Coffee can grow across a wide range of rainfall conditions. Coffee seems to be a more resilient crop than rice
+- For Amanzi, potatoes, wheat and maize occur a lot more frequently than the other crops, this is because Amanzi has less rainfall, making these crops more viable.
 - `Pollution_level` is inversely correlated (weak) with `Standard_yield`, so when places are polluted, crops produce less.
 - `Min_temperature_C` is weakly correlated with `Standard_yield`. So when the minimum temperature is higher, crops produce more. So when it doesn't get too cold, crops grow better.
 - No single feature can explain why a crop does well. There are many weak correlations and correlations only look at linear relationships, so features like `Rainfall` that have a low correlation, may just not be linearly correlated.
 - Coffee crop yield has a positive correlation with rainfall, crop yields are best when there is a lot of rain.
 - Coffee crop yield is higher when the soil is more fertile, so it seems coffee benefits a lot from rich soil.
 - Highly polluted areas lower the crop output of coffee. Pollution has a significant effect on the crop yield.
-- Location and Rainfall are connected, and that Rainfall and Crop_type are connected
-- one of the big takeaways from this analysis is that crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
-- Answer questions like, what makes tea grow well?
+- Location and Rainfall are connected
+- Rainfall and Crop_type are connected
+- Crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
 
 ### 2.7. Recommendations
 
