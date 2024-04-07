@@ -663,6 +663,73 @@ sns.pairplot(coffee_df)
 ![coffee-pairplot](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/03ffd592-a0a0-4d16-b683-a58f42bcc9da)
 
 Calculated the means of the Weather_station_data (`weather_station_means`) and Weather_data_field_mapping (`MD_agric_df_weather_means`) then checked if the means are within 1.5% of one another.
+```python
+def within_tolerance_percentage(extracted, original, tolerance_pct):
+    """
+    Purpose: This function calculates the percentage difference between two values (extracted and original) and checks if this difference is within a specified tolerance percentage (tolerance_pct).
+
+    Parameters:
+    extracted: A numerical value representing the extracted or observed data point.
+    original: A numerical value representing the original or expected data point.
+    tolerance_pct: A numerical value representing the tolerance limit as a percentage.
+
+    Returns: A Boolean value (True or False). It returns True if the percentage difference between extracted and original is less than or equal to tolerance_pct; otherwise, it returns False.
+
+    Calculation: The percentage difference is calculated as abs((extracted - original) / original) * 100.
+    """
+    # Calculate the percentage difference
+    percent_diff = abs((extracted - original) / original) * 100
+    # Check if within tolerance
+    return percent_diff <= tolerance_pct
+
+
+
+def check_means(MD_agric_df_weather_means, weather_station_means):
+    """"
+    Purpose: This function iterates over two data frames (MD_agric_df_weather_means and weather_station_means), compares the mean values of corresponding entries, and checks if they are within a specified tolerance range using the within_tolerance_percentage function.
+
+    Parameters:
+    MD_agric_df_weather_means: A Pandas DataFrame containing original mean values for various measurements, indexed by weather station IDs.
+    weather_station_means: A Pandas DataFrame containing extracted mean values for various measurements, indexed by weather station IDs.
+
+    Functionality:
+    Iterates through each row in weather_station_means.
+    For each row, iterates through each measurement.
+    Retrieves the extracted_mean from weather_station_means and the corresponding original_mean from MD_agric_df_weather_means.
+    Uses the within_tolerance_percentage function to check if the extracted_mean is within the specified tolerance percentage of the original_mean.
+    Keeps count of how many measurements are within and outside the tolerance range (true_count and false_count respectively).
+    Prints detailed information for each measurement, including the weather station ID, measurement name, extracted mean, original mean, and whether it is within specification.
+
+    Outputs: At the end, the function prints the total count of measurements that are within (True) and outside (False) the tolerance range.
+
+    Note: The function assumes the existence of a global variable tolerance_pct that specifies the tolerance percentage.
+    These functions appear to be particularly useful in data validation processes, where comparing data sets and ensuring their consistency within certain limits is crucial.
+    """
+    true_count = 0
+    false_count = 0
+    for index, row in weather_station_means.iterrows():
+
+        print(f"Weather Station ID: {index}")
+        for measurement in row.index:
+            print (measurement)
+            extracted_mean = row[measurement]
+            original_mean = MD_agric_df_weather_means.loc[index, measurement]
+            within_spec = within_tolerance_percentage(extracted_mean, original_mean, tolerance_pct)
+            if  within_spec == True:
+                true_count +=1
+            else:
+                false_count +=1
+            print(f"  Measurement: {measurement}, Extracted Mean: {extracted_mean}, Original Mean: {original_mean}, Within Spec: {within_spec}")
+            print(" ")
+    print(f"True: {true_count}, False: {false_count}")
+
+
+
+tolerance_pct = 1.5
+
+check_means(MD_agric_df_weather_means, weather_station_means)
+```
+![means_compare-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/2e669491-7d02-4349-8709-00aaf5a659d2)
 
 
 ### 2.6. Results/Findings
@@ -684,6 +751,7 @@ Calculated the means of the Weather_station_data (`weather_station_means`) and W
 - Location and Rainfall are connected
 - Rainfall and Crop_type are connected
 - Crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
+- When comparing means, it was discovered that more than half of our data did not match (not within 1,5% difference). The data might not reflect reality.
 
 ### 2.7. Recommendations
 
