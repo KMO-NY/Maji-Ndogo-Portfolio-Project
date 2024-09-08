@@ -62,17 +62,25 @@
 
 [2.4.1. Python Packages](#241-python-packages)
 
+[2.4.2. Regression](#242-regression)
+
 [2.5. Data Analysis](#25-data-analysis)
 
 [2.5.1. Python Packages](#251-python-packages)
+
+[2.5.2. Regression](#252-regression)
 
 [2.6. Results/Findings](#26-resultsfindings)
 
 [2.6.1. Python Packages](#261-python-packages)
 
+[2.6.2. Regression](#262-regression)
+
 [2.7. Recommendations](#27-recommendations)
 
 [2.7.1. Python Packages](#271-python-packages)
+
+[2.7.2. Regression](#272-regression)
 
 
 ## Project Overview
@@ -134,6 +142,27 @@ Here, I will create .py files to do the cleaning of data. The packages will inge
 - Complexity of Crop Performance: The finding that no single feature can explain crop success indicates the complexity of agricultural systems. This underscores the need for advanced analytical techniques, such as machine learning, to uncover non-linear relationships and identify key factors influencing crop performance.
 
 *Kindly note that I am still working on this project. Certain portions may change depending on the results of my EDAs, my research and recommendations.
+
+### Regression
+Simple linear regression is a fundamental statistical method used to quantify the relationship between two variables. It allows us to predict an outcome (dependent variable) based on the value of one predictor (independent variable). In this challenge, we will apply simple linear regression to understand how different environmental factors affect the standardised yield of crops.
+
+Our insights will not only help local farmers maximise their harvests but also contribute to the sustainable agriculture practices in Maji Ndogo.
+
+**Key Findings:**
+
+- Linear regression, for all its strengths, assumes a straightforward relationship between the predictor and the outcome.
+- Factors influencing crop yields in Maji Ndogo—be it temperature, rainfall, or pollution—interact in complex, often nonlinear ways.
+- The initial model with `Ave_temps` hinted at this complexity, suggesting that the effect of the average temperature on yields might follow a more intricate pattern than a straight line can depict (or no pattern at all).
+- The yield also depends on more than just the pollution or the temperature, it depends on many of the factors.
+- Not all crops are affected equally by pollution or temperature, so we could simplify our model if we remove the influence of the different crops.
+
+**Implications:**
+
+- Inadequacy of Linear Models: The assumption that the relationship between factors (e.g., temperature, rainfall, pollution) and crop yields is linear might oversimplify reality. These factors can interact in complex, nonlinear ways, suggesting that a linear regression may not capture the true underlying relationships between the variables.
+- Potential Need for Nonlinear Models: The fact that temperature's effect on yields appears to be more intricate than linear regression suggests indicates the possibility of a nonlinear relationship. Models like polynomial regression, decision trees, or even machine learning techniques like random forests might be more appropriate to capture these complexities.
+- Multifactorial Influences: Yield is influenced by more than one variable (temperature, pollution, rainfall, etc.), and these variables likely interact with each other. Linear regression, by focusing on individual factors, may miss the interaction effects. More advanced techniques like interaction terms or multivariate nonlinear models may be needed.
+- Heterogeneity Across Crops: Different crops may respond differently to the same environmental conditions. Treating all crops the same in a linear model may mask important crop-specific effects. One solution might be to model different crops separately or use hierarchical/mixed-effects models to account for the variability across crops.
+- Model Simplification: If the focus is on general trends or if specific crops do not react significantly to some variables (e.g., pollution), removing those variables or segmenting the data could simplify the model. However, this might also lead to a loss of important information if the effects are subtle but meaningful.
 
 ## Instructions:
 This section is applicable to persons who wish to load the files of the project into their relevant IDEs. The section will cover things one should consider when doing so in order see the same results I saw when doing the project. Don't worry, the instructions are not complicated and will not take up a lot of your time!
@@ -623,6 +652,39 @@ MD_agric_df.describe()
 ```
 ![df describe()-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/0decfaba-5801-4ee9-9100-c5700b5702fb)
 
+#### 2.4.2 Regression
+
+Before diving into our analysis, it's crucial to ensure the integrity of our dataset and that the data is still as we expect it to be. Thisx is achieved through validating the data from the python packages section of the project.
+```python
+dataset.to_csv('sampled_field_df.csv', index=False)
+
+!pytest validate_data.py -v
+
+import os# Define the file paths
+field_csv_path = 'sampled_field_df.csv'
+
+# Delete sampled_field_df.csv if it exists
+if os.path.exists(field_csv_path):
+    os.remove(field_csv_path)
+    print(f"Deleted {field_csv_path}")
+else:
+    print(f"{field_csv_path} does not exist.")
+```
+======================================= test session starts ========================================
+platform linux -- Python 3.10.12, pytest-7.4.4, pluggy-1.4.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /content
+plugins: anyio-3.7.1
+collected 4 items                                                                                  
+
+validate_data.py::test_read_field_dataframe_shape PASSED                                     [ 25%]
+validate_data.py::test_field_dataframe_columns PASSED                                        [ 50%]
+validate_data.py::test_field_dataframe_non_negative_elevation PASSED                         [ 75%]
+validate_data.py::test_crop_types_are_valid PASSED                                           [100%]
+
+======================================== 4 passed in 0.54s =========================================
+Deleted sampled_field_df.csv
+
 ### 2.5. Data Analysis
 
 #### 2.5.1. Python Packages:
@@ -781,6 +843,180 @@ check_means(MD_agric_df_weather_means, weather_station_means)
 ```
 ![means_compare-1](https://github.com/KMO-NY/Maji-Ndogo-Portfolio-Project/assets/83243036/2e669491-7d02-4349-8709-00aaf5a659d2)
 
+#### 2.5.2 Regression
+
+The goal is to determine whether any of the features in the dataset are influencing the Standard_yield of a farm. If we can figure out what these relationships are, then we can use them to start predicting what future yields will be, based on these features.
+
+For this analysis, we want to find whether any features have a linear relationship with `Standard_yield` so that we can fit a linear regression model to the data. This is important because if we try and fit a linear regression model to non-linear data, our predictions won't be good.
+
+Generating a scatter plot to visualise the relationship between `Ave_temps` and `Standard_yield`
+```python
+plt.scatter(dataset['Ave_temps'], dataset['Standard_yield'])
+plt.xlabel('Average Temperature')
+plt.ylabel('Standard Yield')
+plt.title('Relationship between Average Temperature and Standard Yield')
+plt.show()
+```
+![regression-ave_temp-yield](https://github.com/user-attachments/assets/0066fbe7-9942-40ab-a8b3-5f96ecb2c2e8)
+
+```python
+def get_correlation(df, col1, col2):
+    """
+    Takes a DataFrame and the names of the columns we want to determine the correlation for as parameters (Ave_temps and Standard_yield).
+    Calculates the Pearson correlation coefficient between these two columns to quantify their linear relationship.
+    Returns the Pearson correlation coefficient.
+    """
+    correlation, _ = pearsonr(df[col1], df[col2])
+    return correlation
+```
+```python
+correlation = get_correlation(dataset,'Ave_temps','Standard_yield')
+print("Pearson correlation coefficient:", correlation)
+```
+RESULT: Pearson correlation coefficient: 0.006785950289020164
+
+```python
+def fit_linear_regression_model(df, pollution_col, yield_col):
+    """
+    Takes in a DataFrame and the names of the Pollution_level and Standard_yield columns.
+    Fits a linear regression model to the data.
+    Returns the model, the model predictions and the actual y-values.
+    """
+    X = df[[pollution_col]]
+    y = df[yield_col]
+
+    model = LinearRegression()
+    model.fit(X, y)
+
+    # Make predictions
+    y_pred = model.predict(X)
+
+    return model, y_pred, y
+```
+
+Generating a scatter plot to visualise the effect that pollution has on standard yield.
+```python
+X = dataset[['Pollution_level']]
+y = dataset['Standard_yield']
+
+plt.scatter(X, y, label='Actual data')
+plt.plot(X, predictions, color='red', label='Regression line')
+plt.xlabel('Pollution level')
+plt.ylabel('Standard yield')
+plt.title('Effect of Pollution on Standard Yield')
+plt.legend()
+plt.show()
+```
+![regression-pollution-yield](https://github.com/user-attachments/assets/c6714015-c195-4cfd-8b62-33e1f1c8f101)
+
+Pearson correlation coefficient: -0.2857609646210543
+
+```python
+def get_slope_intercept(model):
+    """
+    Inputs the model we fitted and calculates the slope and intercept of the line of best fit.
+    Returns the slope and intercept as a tuple.
+    """
+    slope = model.coef_[0]
+    intercept = model.intercept_
+    return slope, intercept
+```
+Slope: -0.1427617720986607
+Intercept: 0.566268441539338
+
+```python
+def calculate_evaluation_metrics(predictions, y_values):
+    """
+    Calculates and returns the R-squared, Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE) of the model's performance.
+    """
+    r_squared = r2_score(y_values, predictions)
+    mae = mean_absolute_error(y_values, predictions)
+    mse = mean_squared_error(y_values, predictions)
+    rmse = np.sqrt(mse)
+    return r_squared, mae, mse, rmse
+```
+*Evaluation Metrics:*
+R-squared: 0.08165932890115546
+MAE: 0.08554642090904992
+MSE: 0.011477732254034848
+RMSE: 0.10713417873878928
+
+Train-Test Split
+```python
+def data_train_test_split(df, pollution_col, yield_col):
+    X = df[[pollution_col]]
+    y = df[yield_col]
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    return X_train, X_test, y_train, y_test
+```
+```python
+X_train, X_test, y_train, y_test = data_train_test_split(dataset, 'Pollution_level', 'Standard_yield')
+print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
+print(f"y_train shape: {y_train.shape}, y_test shape: {y_test.shape}")
+```
+X_train shape: (4523, 1), X_test shape: (1131, 1)
+y_train shape: (4523,), y_test shape: (1131,)
+
+```python
+def train_split_linear_regression_model(X_train, X_test, y_train, y_test):
+    """
+    Trains a simple linear regression model on the training set.
+    Uses the testing set to make predictions.
+    Returns the model, the predictions and y_test (the actual y values in the testing set values) .
+    """
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    y_pred = model.predict(X_test)
+
+    return model, y_pred, y_test
+```
+*Evaluation Metrics:*
+R-squared: 0.08065722992150859
+MAE:  0.08794942119747501
+MSE: 0.012250634233355654
+RMSE: 0.11068258324305434
+
+Checking the residuals:
+
+```python
+residuals = y_test - predictions_test 
+
+# Plot histogram of residuals
+plt.hist(residuals, bins=20, edgecolor='black')
+plt.xlabel('Residuals')
+plt.ylabel('Frequency')
+plt.title('Histogram of Residuals')
+plt.show()
+```
+![residuals-regression](https://github.com/user-attachments/assets/7d27dd5a-fd17-4c6f-905f-bec2b183abed)
+
+Created a scatter plot of residuals against the predicted values
+
+```python
+plt.scatter(predictions_test, residuals)
+plt.axhline(y=0, color='r', linestyle='--')
+plt.xlabel('Predicted Values')
+plt.ylabel('Residuals')
+plt.title('Residuals vs Predicted Values')
+plt.show()
+```
+![regression-predicted-residuals](https://github.com/user-attachments/assets/dc91c02a-e168-4cae-abb7-0a2e0b806f79)
+
+```python
+def calculate_residuals_statistics(predictions, y_test):
+    """
+    Calculates the mean and standard deviation of the residuals.
+    """
+    residuals = y_test - predictions_test
+    mean_residuals = np.mean(residuals)
+    std_residuals = np.std(residuals)
+    return mean_residuals, std_residuals
+```
+Mean: 0.0058580231923217015
+Standard deviation: 0.11052745268770957
 
 ### 2.6. Results/Findings
 
@@ -803,6 +1039,15 @@ check_means(MD_agric_df_weather_means, weather_station_means)
 - Crops tend to be planted in places where they do well, but not always. Some crops prefer lower rainfall, and are therefore doing well in places with lower rainfall.
 - When comparing means, it was discovered that more than half of our data did not match (not within 1,5% difference). The data might not reflect reality.
 
+#### 2.6.2 Regression
+
+- Linear regression, for all its strengths, assumes a straightforward relationship between the predictor and the outcome.
+- Factors influencing crop yields in Maji Ndogo—be it temperature, rainfall, or pollution—interact in complex, often nonlinear ways.
+- The initial model with `Ave_temps` hinted at this complexity, suggesting that the effect of the average temperature on yields might follow a more intricate pattern than a straight line can depict (or no pattern at all).
+- The yield also depends on more than just the pollution or the temperature, it depends on many of the factors.
+- Not all crops are affected equally by pollution or temperature, so we could simplify our model if we remove the influence of the different crops.
+
+
 ### 2.7. Recommendations
 
 #### 2.7.1. Python Packages:
@@ -813,3 +1058,7 @@ Create the following:
 - data_ingestion.py
 - field_data_processor.py
 - weather_data_processor.py
+
+#### 2.7.2 Regression
+
+Attempt to use other models to find patterns and predict `standard yield`. A decision tree or better yet random forest might be the better option. Hyperparameter tuning is also advised.
